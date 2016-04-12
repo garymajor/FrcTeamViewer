@@ -40,8 +40,8 @@
                 <!-- Change Event Button -->
                 <HyperlinkButton x:Name="btnChangeEvent" Command="{x:Bind eavm.ChangeEventCommand}" Margin="3,2,3,0" >
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="&#xE787;" FontFamily="Segoe MDL2 Assets" FontSize="20" />
-                        <TextBlock Text="Change Event" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
+                        <TextBlock Text="{StaticResource ChangeEventButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
+                        <TextBlock Text="{StaticResource ChangeEventButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
                     </StackPanel>
                 </HyperlinkButton>
                 <TextBlock x:Name="txtEventName" Text="{Binding EventData.Result.name}" Style="{StaticResource TitleTextBlockStyle}" Margin="0,0,0,0" Visibility="{Binding EventData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
@@ -63,8 +63,8 @@
                 <!-- Refresh Button -->
                 <HyperlinkButton x:Name="btnRefresh" Command="{x:Bind eavm.RefreshCommand}" Visibility="{Binding EventAwardData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="3,2,3,0" >
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="&#xE72C;" FontFamily="Segoe MDL2 Assets" FontSize="20" />
-                        <TextBlock Text="Refresh" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
+                        <TextBlock Text="{StaticResource RefreshButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
+                        <TextBlock Text="{StaticResource RefreshButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
                     </StackPanel>
                 </HyperlinkButton>
                 <ListView ItemsSource="{Binding EventAwardData.Result}" x:Name="listEventAwards" ItemTemplate="{StaticResource EventAwardsDataTemplate}" Visibility="{Binding EventAwardData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />

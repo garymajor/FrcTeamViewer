@@ -1,0 +1,18 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FrcTeamViewer">
+
+    <!-- Change Event Button Static Resources -->
+    <x:String x:Key="ChangeEventButtonIcon">&#xE787;</x:String>
+    <x:String x:Key="ChangeEventButtonText">Change Event</x:String>
+
+    <!-- Refresh Button Static Resources -->
+    <x:String x:Key="RefreshButtonIcon">&#xE72C;</x:String>
+    <x:String x:Key="RefreshButtonText">Refresh</x:String>
+
+    <!-- Sort Button Static Resources -->
+    <x:String x:Key="SortButtonIcon">&#xE8CB;</x:String>
+    <x:String x:Key="SortButtonText">Reverse Sort</x:String>
+
+</ResourceDictionary>

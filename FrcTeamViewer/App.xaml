@@ -10,6 +10,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ms-appx:///Intense/Themes/Intense.xaml" />
+                <ResourceDictionary Source="ms-appx:///AppResourceDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <Style x:Key="IconButtonStyle" TargetType="Button" BasedOn="{StaticResource TextBlockButtonStyle}">

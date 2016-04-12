@@ -71,8 +71,8 @@
                 <!-- Change Event Button -->
                 <HyperlinkButton x:Name="btnChangeEvent" Command="{x:Bind tmvm.ChangeEventCommand}" Margin="3,2,3,0" >
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="&#xE787;" FontFamily="Segoe MDL2 Assets" FontSize="20" />
-                        <TextBlock Text="Change Event" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
+                        <TextBlock Text="{StaticResource ChangeEventButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
+                        <TextBlock Text="{StaticResource ChangeEventButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
                     </StackPanel>
                 </HyperlinkButton>
                 <TextBlock x:Name="txtEventName" Text="{Binding EventData.Result.name}" Style="{StaticResource TitleTextBlockStyle}" Margin="0,0,0,0" Visibility="{Binding EventData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
@@ -95,18 +95,18 @@
                     <TextBlock Text=" Match List" Style="{StaticResource TitleTextBlockStyle}" Visibility="{Binding TeamMatchData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,10,0,0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <!-- Team Matches Button-->
+                    <!-- Refresh Button-->
                     <HyperlinkButton x:Name="btnRefresh" Command="{Binding RefreshListCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Margin="3,2,3,0" >
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="&#xE72C;" FontFamily="Segoe MDL2 Assets" FontSize="20" />
-                            <TextBlock Text="Refresh" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
+                            <TextBlock Text="{StaticResource RefreshButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
+                            <TextBlock Text="{StaticResource RefreshButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
                         </StackPanel>
                     </HyperlinkButton>
                     <!-- Reverse Sort Button -->
                     <HyperlinkButton x:Name="btnSortList" Command="{Binding SortListCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Margin="3,2,3,0" >
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="&#xE8CB;" FontFamily="Segoe MDL2 Assets" FontSize="20" />
-                            <TextBlock Text="Reverse Sort" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
+                            <TextBlock Text="{StaticResource SortButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
+                            <TextBlock Text="{StaticResource SortButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
                         </StackPanel>
                     </HyperlinkButton>
                 </StackPanel>
