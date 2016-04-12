@@ -1,0 +1,89 @@
+﻿<Page
+    x:Class="FrcTeamViewer.Pages.EventRankingPage"
+    Name="pageEventRankingPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FrcTeamViewer.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    SizeChanged="pageEventRankingPage_SizeChanged"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <local:WidthConverter x:Key="WidthConverter" />
+
+        <DataTemplate x:Key="EventRankingDataTemplate">
+            <Grid x:Name="gridEventRanking">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="35" /> <!-- Rank -->
+                    <ColumnDefinition Width="50" /> <!-- Team -->
+                    <ColumnDefinition Width="55" /> <!-- Ranking Score -->
+                    <ColumnDefinition Width="55" /> <!-- Auto -->
+                    <ColumnDefinition Width="65" /> <!-- Scale/Challenge -->
+                    <ColumnDefinition Width="55" /> <!-- Goals -->
+                    <ColumnDefinition Width="55" /> <!-- Defense -->
+                    <ColumnDefinition Width="60" /> <!-- Record (W-L-T) -->
+                    <ColumnDefinition Width="40" /> <!-- Played -->
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding rank}" TextAlignment="Left" Style="{StaticResource BaseTextBlockStyle}" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="1" Text="{Binding team}" Style="{StaticResource BaseTextBlockStyle}" Margin="5,0,0,0"/>
+                <TextBlock Grid.Column="2" Text="{Binding ranking_score}" Style="{StaticResource BaseTextBlockStyle}" Margin="5,0,0,0"/>
+                <TextBlock Grid.Column="3" Text="{Binding auto}" Style="{StaticResource BaseTextBlockStyle}" Margin="5,0,0,0"/>
+                <TextBlock Grid.Column="4" Text="{Binding scale_challenge}" Style="{StaticResource BaseTextBlockStyle}" Margin="5,0,0,0"/>
+                <TextBlock Grid.Column="5" Text="{Binding goals}" Style="{StaticResource BaseTextBlockStyle}" Margin="5,0,0,0"/>
+                <TextBlock Grid.Column="6" Text="{Binding defense}" Style="{StaticResource BaseTextBlockStyle}" Margin="5,0,0,0"/>
+                <TextBlock Grid.Column="7" Text="{Binding record_w_l_t}" Style="{StaticResource BaseTextBlockStyle}" Margin="5,0,0,0"/>
+                <TextBlock Grid.Column="8" Text="{Binding played}" Style="{StaticResource BaseTextBlockStyle}" Margin="5,0,0,0"/>
+            </Grid>
+        </DataTemplate>
+
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ScrollViewer Padding="{x:Bind Frame.Padding, Mode=OneWay}">
+            <StackPanel>
+                <!-- Event Data Busy indicator -->
+                <TextBlock Text="Loading Event Information..." Style="{StaticResource BodyTextBlockStyle}" Visibility="{Binding EventData.IsNotCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <ProgressBar IsIndeterminate="True" Visibility="{Binding EventData.IsNotCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                <!-- Event Data Results -->
+                <TextBlock Text="Event Information" Style="{StaticResource TitleTextBlockStyle}" DataContext="{x:Bind Frame}" Visibility="{Binding PageTitleVisibility}" />
+                <!-- Change Event Button -->
+                <HyperlinkButton x:Name="btnChangeEvent" Command="{x:Bind ervm.ChangeEventCommand}" Margin="3,2,3,0" >
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE787;" FontFamily="Segoe MDL2 Assets" FontSize="20" />
+                        <TextBlock Text="Change Event" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
+                    </StackPanel>
+                </HyperlinkButton>
+                <TextBlock x:Name="txtEventName" Text="{Binding EventData.Result.name}" Style="{StaticResource TitleTextBlockStyle}" Margin="0,0,0,0" Visibility="{Binding EventData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <TextBlock x:Name="txtEventLocation" Text ="{Binding EventData.Result.location}" Style="{StaticResource BodyTextBlockStyle}" Visibility="{Binding EventData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <StackPanel Orientation="Horizontal" Visibility="{Binding EventData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                    <TextBlock x:Name="txtStartDate" Text="{Binding EventData.Result.start_date}" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                    <TextBlock Text="-" Style="{StaticResource BodyTextBlockStyle}" Margin="5,0,0,0"/>
+                    <TextBlock x:Name="txtEndDate" Text="{Binding EventData.Result.end_date}" Style="{StaticResource BodyTextBlockStyle}" Margin="5,0,0,0"/>
+                </StackPanel>
+                <!-- Event Data Error details -->
+                <TextBlock Text="{Binding EventData.ErrorMessage}" FontWeight="Bold" Foreground="Red" Visibility="{Binding EventData.IsFaulted, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                <!-- Event Ranking Data Busy indicator -->
+                <TextBlock Text="Loading Ranking List..." Style="{StaticResource BodyTextBlockStyle}" Visibility="{Binding EventRankingData.IsNotCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,10,0,0" />
+                <ProgressBar IsIndeterminate="True" Visibility="{Binding EventRankingData.IsNotCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                <!-- Event Ranking Data Results -->
+                <TextBlock Text="Ranking List" Style="{StaticResource TitleTextBlockStyle}" Visibility="{Binding EventRankingData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,10,0,0"/>
+                <!-- Refresh Button -->
+                <HyperlinkButton x:Name="btnRefresh" Command="{x:Bind ervm.RefreshCommand}" Visibility="{Binding EventRankingData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="3,2,3,0" >
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE72C;" FontFamily="Segoe MDL2 Assets" FontSize="20" />
+                        <TextBlock Text="Refresh" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
+                    </StackPanel>
+                </HyperlinkButton>
+                <ListView ItemsSource="{Binding EventRankingData.Result}" x:Name="listEventRanking" ItemTemplate="{StaticResource EventRankingDataTemplate}" Visibility="{Binding EventRankingData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                <!-- Event Ranking Data Error details -->
+                <TextBlock Text="{Binding EventRankingData.ErrorMessage}" FontWeight="Bold" Foreground="Red" Visibility="{Binding EventRankingData.IsFaulted, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>
