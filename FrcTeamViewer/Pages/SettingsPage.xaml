@@ -23,8 +23,8 @@
                     <TextBox x:Name="TeamNumber" InputScope="Number" Margin="5,0,0,0" Text="{x:Bind svm.TeamNumber, Mode=TwoWay}" KeyUp="TextBox_KeyUp"/>
                     <HyperlinkButton x:Name="btnViewTeam" Margin="5,0,0,0" Command="{x:Bind svm.ViewTeamInfoCommand}">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="&#xE8D4;" FontFamily="Segoe MDL2 Assets" FontSize="20" />
-                            <TextBlock Text="Team Info" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0"/>
+                            <TextBlock Text="{StaticResource TeamInfoButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
+                            <TextBlock Text="{StaticResource TeamInfoButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0"/>
                         </StackPanel>
                     </HyperlinkButton>
                 </StackPanel>

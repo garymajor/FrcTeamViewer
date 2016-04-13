@@ -7,6 +7,22 @@
     <x:String x:Key="ChangeEventButtonIcon">&#xE787;</x:String>
     <x:String x:Key="ChangeEventButtonText">Change Event</x:String>
 
+    <!-- Event Awards Button Static Resources -->
+    <x:String x:Key="EventAwardsButtonIcon">&#xE113;</x:String>
+    <x:String x:Key="EventAwardsButtonText">Event Awards</x:String>
+
+    <!-- Event Matches Button Static Resources -->
+    <x:String x:Key="EventMatchesButtonIcon">&#xE133;</x:String>
+    <x:String x:Key="EventMatchesButtonText">Event Matches</x:String>
+
+    <!-- Event Teams Button Static Resources -->
+    <x:String x:Key="EventTeamsButtonIcon">&#xE716;</x:String>
+    <x:String x:Key="EventTeamsButtonText">Event Teams</x:String>
+
+    <!-- Ranking List Button Static Resources -->
+    <x:String x:Key="RankingListButtonIcon">&#xE7AC;</x:String>
+    <x:String x:Key="RankingListButtonText">Ranking LIst</x:String>
+
     <!-- Refresh Button Static Resources -->
     <x:String x:Key="RefreshButtonIcon">&#xE72C;</x:String>
     <x:String x:Key="RefreshButtonText">Refresh</x:String>
@@ -14,5 +30,14 @@
     <!-- Sort Button Static Resources -->
     <x:String x:Key="SortButtonIcon">&#xE8CB;</x:String>
     <x:String x:Key="SortButtonText">Reverse Sort</x:String>
+
+    <!-- Team Info Button Static Resources -->
+    <x:String x:Key="TeamInfoButtonIcon">&#xE787;</x:String>
+    <x:String x:Key="TeamInfoButtonText">Team Info</x:String>
+    <x:String x:Key="ChangeTeamButtonText">Change Team</x:String>
+
+    <!-- Team Matches Button Static Resources -->
+    <x:String x:Key="TeamMatchesButtonIcon">&#xE779;</x:String>
+    <x:String x:Key="TeamMatchesButtonText">Team Matches</x:String>
 
 </ResourceDictionary>
