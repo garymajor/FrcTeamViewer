@@ -76,7 +76,7 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ScrollViewer Padding="{x:Bind Frame.Padding, Mode=OneWay}" HorizontalScrollMode="Auto">
+        <ScrollViewer Padding="{x:Bind Frame.Padding, Mode=OneWay}" HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Auto">
             <StackPanel>
                 <!-- Event Data Busy indicator -->
                 <TextBlock Text="Loading Event Information..." Style="{StaticResource BodyTextBlockStyle}" Visibility="{Binding EventData.IsNotCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
