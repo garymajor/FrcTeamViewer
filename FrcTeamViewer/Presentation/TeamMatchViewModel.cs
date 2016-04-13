@@ -282,33 +282,8 @@ namespace FrcTeamViewer.Presentation
         private async Task<ObservableCollection<MatchInformation>> LoadEventMatchData(string teamnumber, string eventkey)
         {
             IEnumerable<MatchInformation> list = await competitionteam.GetTeamEventMatchList(teamnumber, eventkey);
-            //list = CleanUpTeamNumbers(list);
             IEnumerable<MatchInformation> sortedresult = SortMatchList(list);
             return new ObservableCollection<MatchInformation>(sortedresult);
-        }
-
-        /// <summary>
-        /// Internal method to clean up the team numbers...
-        /// The Blue Alliance API returns team numbers as "frcNNNN" - so, we remove "frc" from the team number.
-        /// </summary>
-        /// <param name="list">The match information list to clean up.</param>
-        /// <returns></returns>
-        private IEnumerable<MatchInformation> CleanUpTeamNumbers(IEnumerable<MatchInformation> list)
-        {
-            foreach (var match in list)
-            {
-                for (int i = 0; i <  match.alliances.blue.teams.Count; i++)
-                {
-                    match.alliances.blue.teams[i] = match.alliances.blue.teams[i].Replace("frc", string.Empty);
-                }
-
-                for (int i = 0; i < match.alliances.red.teams.Count; i++)
-                {
-                    match.alliances.red.teams[i] = match.alliances.red.teams[i].Replace("frc", string.Empty);
-                }
-            }
-
-            return list;
         }
     }
 }
