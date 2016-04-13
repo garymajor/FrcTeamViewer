@@ -12,18 +12,6 @@
         <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <local:WidthConverter x:Key="WidthConverter" />
 
-        <DataTemplate x:Key="EventMatchAllianceTeamTemplate" >
-            <Grid>
-                <HyperlinkButton Command="{Binding ElementName=pageEventMatchPage, Path=DataContext.ChangeTeamCommand}" CommandParameter="{Binding}" VerticalAlignment="Center" Margin="0,0,0,0">
-                    <TextBlock Text="{Binding}" VerticalAlignment="Center" />
-                </HyperlinkButton>
-            </Grid>
-        </DataTemplate>
-
-        <ItemsPanelTemplate x:Key="EventMatchAllianceTeamsPanelTemplate">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch" Margin="0" />
-        </ItemsPanelTemplate>
-
         <DataTemplate x:Key="EventMatchHeaderTemplate">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -47,13 +35,37 @@
                     <ColumnDefinition Width="40" />  <!-- blue score -->
                     <ColumnDefinition Width="160" /> <!-- blue teams -->
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="{Binding MatchNumber}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
-                <!-- <GridView Grid.Column="1" ItemsSource="{Binding alliances.RedTeamNumberList}" x:Name="gridRedAllianceTeams" ItemTemplate="{StaticResource EventMatchAllianceTeamTemplate}" ItemsPanel="{StaticResource EventMatchAllianceTeamsPanelTemplate}" Margin="0" /> -->
-                <TextBlock Grid.Column="1" Text="{Binding RedAllianceTeams}" TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
-                <TextBlock Grid.Column="2" Text="{Binding RedAllianceScore}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
-                <TextBlock Grid.Column="3" Text="{Binding BlueAllianceScore}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
-                <!-- <GridView Grid.Column="4" ItemsSource="{Binding alliances.BlueTeamNumberList}" x:Name="gridBlueAllianceTeams" ItemTemplate="{StaticResource EventMatchAllianceTeamTemplate}" ItemsPanel="{StaticResource EventMatchAllianceTeamsPanelTemplate}" Margin="0" /> -->
-                <TextBlock Grid.Column="4" Text="{Binding BlueAllianceTeams}" TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="0" Text="{Binding MatchNumber}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <!-- Red Alliance Teams (as links to change team) -->
+                <Grid Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <HyperlinkButton Command="{Binding ElementName=pageEventMatchPage, Path=DataContext.ChangeTeamCommand}" CommandParameter="{Binding alliances.RedTeamNumberList[0]}" VerticalAlignment="Center" Margin="0,0,0,0">
+                            <TextBlock Text="{Binding alliances.RedTeamNumberList[0]}" TextAlignment="Center" Margin="0" />
+                        </HyperlinkButton>
+                        <HyperlinkButton Command="{Binding ElementName=pageEventMatchPage, Path=DataContext.ChangeTeamCommand}" CommandParameter="{Binding alliances.RedTeamNumberList[1]}" VerticalAlignment="Center" Margin="0,0,0,0">
+                            <TextBlock Text="{Binding alliances.RedTeamNumberList[1]}" TextAlignment="Center" Margin="10,0,0,0" />
+                        </HyperlinkButton>
+                        <HyperlinkButton Command="{Binding ElementName=pageEventMatchPage, Path=DataContext.ChangeTeamCommand}" CommandParameter="{Binding alliances.RedTeamNumberList[2]}" VerticalAlignment="Center" Margin="0,0,0,0">
+                            <TextBlock Text="{Binding alliances.RedTeamNumberList[2]}" TextAlignment="Center" Margin="10,0,0,0" />
+                        </HyperlinkButton>
+                    </StackPanel>
+                </Grid>
+                <TextBlock Grid.Column="2" Text="{Binding RedAllianceScore}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="3" Text="{Binding BlueAllianceScore}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <!-- Blue Alliance Teams (as links to change team) -->
+                <Grid Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <HyperlinkButton Command="{Binding ElementName=pageEventMatchPage, Path=DataContext.ChangeTeamCommand}" CommandParameter="{Binding alliances.BlueTeamNumberList[0]}" VerticalAlignment="Center" Margin="0,0,0,0">
+                            <TextBlock Text="{Binding alliances.BlueTeamNumberList[0]}" TextAlignment="Center" Margin="0" />
+                        </HyperlinkButton>
+                        <HyperlinkButton Command="{Binding ElementName=pageEventMatchPage, Path=DataContext.ChangeTeamCommand}" CommandParameter="{Binding alliances.BlueTeamNumberList[1]}" VerticalAlignment="Center" Margin="0,0,0,0">
+                            <TextBlock Text="{Binding alliances.BlueTeamNumberList[1]}" TextAlignment="Center" Margin="10,0,0,0" />
+                        </HyperlinkButton>
+                        <HyperlinkButton Command="{Binding ElementName=pageEventMatchPage, Path=DataContext.ChangeTeamCommand}" CommandParameter="{Binding alliances.BlueTeamNumberList[2]}" VerticalAlignment="Center" Margin="0,0,0,0">
+                            <TextBlock Text="{Binding alliances.BlueTeamNumberList[2]}" TextAlignment="Center" Margin="10,0,0,0" />
+                        </HyperlinkButton>
+                    </StackPanel>
+                </Grid>
             </Grid>
         </DataTemplate>
 
@@ -88,7 +100,7 @@
                 <!-- Event Match Data Busy indicator -->
                 <TextBlock Text="Loading Match List..." Style="{StaticResource BodyTextBlockStyle}" Visibility="{Binding EventMatchData.IsNotCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,10,0,0" />
                 <ProgressBar IsIndeterminate="True" Visibility="{Binding EventMatchData.IsNotCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
-
+                
                 <!-- Event Match Data Results -->
                 <TextBlock Text="Event Match List" Style="{StaticResource TitleTextBlockStyle}" Visibility="{Binding EventMatchData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,10,0,0"/>
                 <StackPanel Orientation="Horizontal">
