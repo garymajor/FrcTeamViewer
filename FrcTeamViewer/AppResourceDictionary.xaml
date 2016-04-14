@@ -8,7 +8,7 @@
     <x:String x:Key="ChangeEventButtonText">Change Event</x:String>
 
     <!-- Event Awards Button Static Resources -->
-    <x:String x:Key="EventAwardsButtonIcon">&#xE113;</x:String>
+    <x:String x:Key="EventAwardsButtonIcon">&#xE734;</x:String>
     <x:String x:Key="EventAwardsButtonText">Event Awards</x:String>
 
     <!-- Event Matches Button Static Resources -->

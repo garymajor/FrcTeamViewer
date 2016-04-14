@@ -20,7 +20,7 @@ namespace FrcTeamViewer
             vm.TopItems.Add(new NavigationItem { Icon = "\ue779", DisplayName = "Team Matches", PageType = typeof(TeamMatchPage) });
             vm.TopItems.Add(new NavigationItem { Icon = "\uE716", DisplayName = "Event Teams", PageType = typeof(EventTeamsPage) });
             vm.TopItems.Add(new NavigationItem { Icon = "\uE7AC", DisplayName = "Event Ranking", PageType = typeof(EventRankingPage) });
-            vm.TopItems.Add(new NavigationItem { Icon = "\uE113", DisplayName = "Event Awards", PageType = typeof(EventAwardsPage) });
+            vm.TopItems.Add(new NavigationItem { Icon = "\uE734", DisplayName = "Event Awards", PageType = typeof(EventAwardsPage) });
 
             vm.BottomItems.Add(new NavigationItem { Icon = "\uE713", DisplayName = "Settings", PageType = typeof(SettingsPage) });
             vm.BottomItems.Add(new NavigationItem { Icon = "\uE897", DisplayName = "About", PageType = typeof(AboutPage) });
