@@ -110,7 +110,7 @@ namespace FrcTeamViewer.Presentation
             refreshListCommand = new DelegateCommand(RefreshList);
             sortListCommand = new DelegateCommand(SortList);
             svm = new SettingsViewModel();
-            competitionevent = new Event();
+            apiClient = new ApiClient();
             EventData = new NotifyTaskCompletion<EventInformation>(LoadEventData(svm.EventKey));
             EventMatchData = new NotifyTaskCompletion<ObservableCollection<MatchInformation>>(LoadEventMatchData(svm.EventKey));
         }
@@ -146,9 +146,9 @@ namespace FrcTeamViewer.Presentation
         private SettingsViewModel svm { get; set; }
 
         /// <summary>
-        /// Internal event key member
+        /// Internal TBA API Client
         /// </summary>
-        private Event competitionevent { get; set; }
+        private ApiClient apiClient { get; set; }
 
         /// <summary>
         /// Internal Page Width member
@@ -253,7 +253,7 @@ namespace FrcTeamViewer.Presentation
         /// <param name="eventkey">The event key to load.</param>
         private async Task<EventInformation> LoadEventData(string eventkey)
         {
-            EventInformation ei = await competitionevent.GetEventInfo(eventkey);
+            EventInformation ei = await apiClient.EventApi.GetEventInfo(eventkey);
             return ei;
         }
 
@@ -263,7 +263,7 @@ namespace FrcTeamViewer.Presentation
         /// <param name="eventkey">The team number to load.</param>
         private async Task<ObservableCollection<MatchInformation>> LoadEventMatchData(string eventkey)
         {
-            IEnumerable<MatchInformation> list = await competitionevent.GetEventMatchList(eventkey);
+            IEnumerable<MatchInformation> list = await apiClient.EventApi.GetEventMatchList(eventkey);
             IEnumerable<MatchInformation> sortedresult = SortMatchList(list);
             return new ObservableCollection<MatchInformation>(sortedresult);
         }

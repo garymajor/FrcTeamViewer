@@ -121,8 +121,7 @@ namespace FrcTeamViewer.Presentation
             refreshListCommand = new DelegateCommand(RefreshList);
             sortListCommand = new DelegateCommand(SortList);
             svm = new SettingsViewModel();
-            competitionevent = new Event();
-            competitionteam = new Team();
+            apiClient = new ApiClient();
             EventData = new NotifyTaskCompletion<EventInformation>(LoadEventData(svm.EventKey));
             TeamMatchData = new NotifyTaskCompletion<ObservableCollection<MatchInformation>>(LoadEventMatchData(svm.TeamNumber, svm.EventKey));
         }
@@ -158,14 +157,9 @@ namespace FrcTeamViewer.Presentation
         private SettingsViewModel svm { get; set; }
 
         /// <summary>
-        /// Internal event key member
+        /// Internal TBA API client class
         /// </summary>
-        private Event competitionevent { get; set; }
-
-        /// <summary>
-        /// Internal team member
-        /// </summary>
-        private Team competitionteam { get; set; }
+        private ApiClient apiClient { get; set; }
 
         /// <summary>
         /// Internal Page Width member
@@ -270,7 +264,7 @@ namespace FrcTeamViewer.Presentation
         /// <param name="eventkey">The event key to load.</param>
         private async Task<EventInformation> LoadEventData(string eventkey)
         {
-            EventInformation ei = await competitionevent.GetEventInfo(eventkey);
+            EventInformation ei = await apiClient.EventApi.GetEventInfo(eventkey);
             return ei;
         }
 
@@ -281,7 +275,7 @@ namespace FrcTeamViewer.Presentation
         /// <param name="eventkey">The event.</param>
         private async Task<ObservableCollection<MatchInformation>> LoadEventMatchData(string teamnumber, string eventkey)
         {
-            IEnumerable<MatchInformation> list = await competitionteam.GetTeamEventMatchList(teamnumber, eventkey);
+            IEnumerable<MatchInformation> list = await apiClient.TeamApi.GetTeamEventMatchList(teamnumber, eventkey);
             IEnumerable<MatchInformation> sortedresult = SortMatchList(list);
             return new ObservableCollection<MatchInformation>(sortedresult);
         }

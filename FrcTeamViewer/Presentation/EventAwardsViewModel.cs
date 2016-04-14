@@ -86,7 +86,7 @@ namespace FrcTeamViewer.Presentation
             changeEventCommand = new DelegateCommand(ChangeEvent);
             refreshCommand = new DelegateCommand(RefreshList);
             svm = new SettingsViewModel();
-            competitionevent = new Event();
+            apiClient = new ApiClient();
             EventData = new NotifyTaskCompletion<EventInformation>(LoadEventData(svm.EventKey));
             EventAwardData = new NotifyTaskCompletion<ObservableCollection<EventAwardInformation>>(LoadEventAwardData(svm.EventKey));
         }
@@ -112,9 +112,9 @@ namespace FrcTeamViewer.Presentation
         private SettingsViewModel svm { get; set; }
 
         /// <summary>
-        /// Internal event key member
+        /// Internal TBA API Client
         /// </summary>
-        private Event competitionevent { get; set; }
+        private ApiClient apiClient { get; set; }
 
         /// <summary>
         /// Internal Page Width member
@@ -145,7 +145,7 @@ namespace FrcTeamViewer.Presentation
         /// <param name="eventkey">The event key to load.</param>
         private async Task<EventInformation> LoadEventData(string eventkey)
         {
-            EventInformation ei = await competitionevent.GetEventInfo(eventkey);
+            EventInformation ei = await apiClient.EventApi.GetEventInfo(eventkey);
             return ei;
         }
 
@@ -155,7 +155,7 @@ namespace FrcTeamViewer.Presentation
         /// <param name="s">The team number to load.</param>
         private async Task<ObservableCollection<EventAwardInformation>> LoadEventAwardData(string eventkey)
         {
-            List<EventAwardInformation> eai = await competitionevent.GetEventAwardList(eventkey);
+            List<EventAwardInformation> eai = await apiClient.EventApi.GetEventAwardList(eventkey);
 
             // Sort the events before we return them.
             var sortedresult = eai.OrderBy(award => award.award_type).Select(award => award);

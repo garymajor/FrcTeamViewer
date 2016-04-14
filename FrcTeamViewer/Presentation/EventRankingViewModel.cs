@@ -85,7 +85,7 @@ namespace FrcTeamViewer.Presentation
             changeEventCommand = new DelegateCommand(ChangeEvent);
             refreshCommand = new DelegateCommand(RefreshList);
             svm = new SettingsViewModel();
-            competitionevent = new Event();
+            apiClient = new ApiClient();
             EventData = new NotifyTaskCompletion<EventInformation>(LoadEventData(svm.EventKey));
             EventRankingData = new NotifyTaskCompletion<ObservableCollection<EventRankingInformation>>(LoadEventRankingData(svm.EventKey));
         }
@@ -111,9 +111,9 @@ namespace FrcTeamViewer.Presentation
         private SettingsViewModel svm { get; set; }
 
         /// <summary>
-        /// Internal event key member
+        /// Internal TBA API Client
         /// </summary>
-        private Event competitionevent { get; set; }
+        private ApiClient apiClient { get; set; }
 
         /// <summary>
         /// Internal Page Width member
@@ -144,7 +144,7 @@ namespace FrcTeamViewer.Presentation
         /// <param name="eventkey">The event key to load.</param>
         private async Task<EventInformation> LoadEventData(string eventkey)
         {
-            EventInformation ei = await competitionevent.GetEventInfo(eventkey);
+            EventInformation ei = await apiClient.EventApi.GetEventInfo(eventkey);
             return ei;
         }
 
@@ -154,7 +154,7 @@ namespace FrcTeamViewer.Presentation
         /// <param name="s">The team number to load.</param>
         private async Task<ObservableCollection<EventRankingInformation>> LoadEventRankingData(string eventkey)
         {
-            List<EventRankingInformation> eai = await competitionevent.GetEventRankingList(eventkey);
+            List<EventRankingInformation> eai = await apiClient.EventApi.GetEventRankingList(eventkey);
 
             // Don't need to sort this one - the api returns the data in the correct order.
             return new ObservableCollection<EventRankingInformation>(eai);

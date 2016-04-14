@@ -64,9 +64,9 @@ namespace FrcTeamViewer.Presentation
         private SettingsViewModel svm { get; set; }
 
         /// <summary>
-        /// Internal Team object (from TbaApiClient)
+        /// Internal TBA API Client
         /// </summary>
-        private Team team { get; set; }
+        private ApiClient apiClient { get; set; }
 
         /// <summary>
         /// Change Settings Command
@@ -146,7 +146,7 @@ namespace FrcTeamViewer.Presentation
             showEventTeamsCommand = new DelegateCommand(ShowEventTeams);
             showTeamMatchesCommand = new DelegateCommand(ShowTeamMatches);
             svm = new SettingsViewModel();
-            team = new Team();
+            apiClient = new ApiClient();
             TeamData = new NotifyTaskCompletion<TeamInformation>(LoadTeamData(svm.TeamNumber));
             TeamEventData = new NotifyTaskCompletion<ObservableCollection<EventInformation>>(LoadTeamEventData(svm.TeamNumber));
         }
@@ -224,7 +224,7 @@ namespace FrcTeamViewer.Presentation
         /// <param name="teamnumber">The team number to load.</param>
         private async Task<TeamInformation> LoadTeamData(string teamnumber)
         {
-            TeamInformation ti = await team.GetTeamInfo(teamnumber);
+            TeamInformation ti = await apiClient.TeamApi.GetTeamInfo(teamnumber);
             return ti;
         }
 
@@ -234,7 +234,7 @@ namespace FrcTeamViewer.Presentation
         /// <param name="teamnumber">The team number to load.</param>
         private async Task<ObservableCollection<EventInformation>> LoadTeamEventData(string teamnumber)
         {
-            List<EventInformation> tei = await team.GetTeamEventInfoList(teamnumber);
+            List<EventInformation> tei = await apiClient.TeamApi.GetTeamEventInfoList(teamnumber);
 
             // Sort the events before we return them.
             var sortedresult = tei.OrderBy(teamevent => teamevent.start_date).Select(teamevent => teamevent);

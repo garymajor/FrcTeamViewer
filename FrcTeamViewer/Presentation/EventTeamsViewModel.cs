@@ -40,7 +40,7 @@ namespace FrcTeamViewer.Presentation
         private ICommand changeEventCommand;
         private ICommand changeTeamCommand;
         private SettingsViewModel svm { get; set; }
-        private Event competitionevent { get; set; }
+        private ApiClient apiClient { get; set; }
         private double pageWidth { get; set; }
 
         public ICommand ChangeEventCommand
@@ -67,7 +67,7 @@ namespace FrcTeamViewer.Presentation
             changeEventCommand = new DelegateCommand(ChangeEvent);
             changeTeamCommand = new DelegateCommand(ChangeTeam);
             svm = new SettingsViewModel();
-            competitionevent = new Event();
+            apiClient = new ApiClient();
             EventData = new NotifyTaskCompletion<EventInformation>(LoadEventData(svm.EventKey));
             EventTeamData = new NotifyTaskCompletion<ObservableCollection<TeamInformation>>(LoadEventTeamData(svm.EventKey));
         }
@@ -90,7 +90,7 @@ namespace FrcTeamViewer.Presentation
         /// <param name="eventkey">The event key to load.</param>
         private async Task<EventInformation> LoadEventData(string eventkey)
         {
-            EventInformation ei = await competitionevent.GetEventInfo(eventkey);
+            EventInformation ei = await apiClient.EventApi.GetEventInfo(eventkey);
             return ei;
         }
 
@@ -100,7 +100,7 @@ namespace FrcTeamViewer.Presentation
         /// <param name="s">The team number to load.</param>
         private async Task<ObservableCollection<TeamInformation>> LoadEventTeamData(string eventkey)
         {
-            List<TeamInformation> ti = await competitionevent.GetEventTeamList(eventkey);
+            List<TeamInformation> ti = await apiClient.EventApi.GetEventTeamList(eventkey);
 
             // Sort the events before we return them.
             var sortedresult = ti.OrderBy(team => team.teamnum).Select(team => team);
