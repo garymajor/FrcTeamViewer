@@ -74,13 +74,26 @@
 
                 <!-- Event Data Results -->
                 <TextBlock Text="Event Information" Style="{StaticResource TitleTextBlockStyle}" DataContext="{x:Bind Frame}" Visibility="{Binding PageTitleVisibility}" />
-                <!-- Change Event Button -->
-                <HyperlinkButton x:Name="btnChangeEvent" Command="{x:Bind ervm.ChangeEventCommand}" Margin="3,2,3,0" >
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{StaticResource ChangeEventButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
-                        <TextBlock Text="{StaticResource ChangeEventButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
-                    </StackPanel>
-                </HyperlinkButton>
+                <Grid Height="35" Margin="0,-10,0,0" ScrollViewer.VerticalScrollMode="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="125" /> <!-- change event button-->
+                        <ColumnDefinition Width="80" />  <!-- refresh button -->
+                    </Grid.ColumnDefinitions>
+                    <!-- Change Event Button -->
+                    <HyperlinkButton Grid.Column="0" x:Name="btnChangeEvent" Command="{x:Bind ervm.ChangeEventCommand}" Margin="0,0,0,0" >
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{StaticResource ChangeEventButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
+                            <TextBlock Text="{StaticResource ChangeEventButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
+                        </StackPanel>
+                    </HyperlinkButton>
+                    <!-- Refresh Button -->
+                    <HyperlinkButton Grid.Column="1" x:Name="btnRefresh" Command="{x:Bind ervm.RefreshCommand}" Margin="0,0,0,0" >
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{StaticResource RefreshButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
+                            <TextBlock Text="{StaticResource RefreshButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
+                        </StackPanel>
+                    </HyperlinkButton>
+                </Grid>
                 <TextBlock x:Name="txtEventName" Text="{Binding EventData.Result.name}" Style="{StaticResource TitleTextBlockStyle}" Margin="0,0,0,0" Visibility="{Binding EventData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <TextBlock x:Name="txtEventLocation" Text ="{Binding EventData.Result.location}" Style="{StaticResource BodyTextBlockStyle}" Visibility="{Binding EventData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <StackPanel Orientation="Horizontal" Visibility="{Binding EventData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" >
@@ -97,13 +110,6 @@
 
                 <!-- Event Ranking Data Results -->
                 <TextBlock Text="Ranking List" Style="{StaticResource TitleTextBlockStyle}" Visibility="{Binding EventRankingData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,10,0,0"/>
-                <!-- Refresh Button -->
-                <HyperlinkButton x:Name="btnRefresh" Command="{x:Bind ervm.RefreshCommand}" Visibility="{Binding EventRankingData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="3,2,3,0" >
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{StaticResource RefreshButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
-                        <TextBlock Text="{StaticResource RefreshButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
-                    </StackPanel>
-                </HyperlinkButton>
                 <ListView ItemsSource="{Binding EventRankingData.Result}" x:Name="listEventRanking" ItemTemplate="{StaticResource EventRankingDataTemplate}" HeaderTemplate="{StaticResource EventRankingHeaderTemplate}" Visibility="{Binding EventRankingData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
                 <!-- Event Ranking Data Error details -->

@@ -84,13 +84,34 @@
 
                 <!-- Event Data Results -->
                 <TextBlock Text="Event Information" Style="{StaticResource TitleTextBlockStyle}" DataContext="{x:Bind Frame}" Visibility="{Binding PageTitleVisibility}" />
-                <!-- Change Event Button -->
-                <HyperlinkButton x:Name="btnChangeEvent" Command="{x:Bind emvm.ChangeEventCommand}" Margin="3,2,3,0" >
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{StaticResource ChangeEventButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
-                        <TextBlock Text="{StaticResource ChangeEventButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
-                    </StackPanel>
-                </HyperlinkButton>
+                <Grid Height="35" Margin="0,-10,0,0" ScrollViewer.VerticalScrollMode="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="125" /> <!-- change event button -->
+                        <ColumnDefinition Width="80" />  <!-- refresh button -->
+                        <ColumnDefinition Width="115" /> <!-- reverse sort button -->
+                    </Grid.ColumnDefinitions>
+                    <!-- Change Event Button -->
+                    <HyperlinkButton Grid.Column="0" x:Name="btnChangeEvent" Command="{x:Bind emvm.ChangeEventCommand}" Margin="0,0,0,0" >
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{StaticResource ChangeEventButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
+                            <TextBlock Text="{StaticResource ChangeEventButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
+                        </StackPanel>
+                    </HyperlinkButton>
+                    <!-- Refresh Button -->
+                    <HyperlinkButton Grid.Column="1" x:Name="btnRefresh" Command="{Binding RefreshListCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Margin="0,0,0,0" >
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{StaticResource RefreshButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
+                            <TextBlock Text="{StaticResource RefreshButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
+                        </StackPanel>
+                    </HyperlinkButton>
+                    <!-- Reverse Sort Button -->
+                    <HyperlinkButton Grid.Column="2" x:Name="btnSortList" Command="{Binding SortListCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Margin="0,0,0,0" >
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{StaticResource SortButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
+                            <TextBlock Text="{StaticResource SortButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
+                        </StackPanel>
+                    </HyperlinkButton>
+                </Grid>
                 <TextBlock x:Name="txtEventName" Text="{Binding EventData.Result.name}" Style="{StaticResource TitleTextBlockStyle}" Margin="0,0,0,0" Visibility="{Binding EventData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <TextBlock x:Name="txtEventLocation" Text ="{Binding EventData.Result.location}" Style="{StaticResource BodyTextBlockStyle}" Visibility="{Binding EventData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <StackPanel Orientation="Horizontal" Visibility="{Binding EventData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" >
@@ -107,22 +128,6 @@
                 
                 <!-- Event Match Data Results -->
                 <TextBlock Text="Event Match List" Style="{StaticResource TitleTextBlockStyle}" Visibility="{Binding EventMatchData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,10,0,0"/>
-                <StackPanel Orientation="Horizontal">
-                    <!-- Refresh Button-->
-                    <HyperlinkButton x:Name="btnRefresh" Command="{Binding RefreshListCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Margin="3,2,3,0" >
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{StaticResource RefreshButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
-                            <TextBlock Text="{StaticResource RefreshButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
-                        </StackPanel>
-                    </HyperlinkButton>
-                    <!-- Reverse Sort Button -->
-                    <HyperlinkButton x:Name="btnSortList" Command="{Binding SortListCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Margin="3,2,3,0" >
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{StaticResource SortButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
-                            <TextBlock Text="{StaticResource SortButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
-                        </StackPanel>
-                    </HyperlinkButton>
-                </StackPanel>
                 <ListView ItemsSource="{Binding EventMatchData.Result}" x:Name="listEventMatches" ItemTemplate="{StaticResource EventMatchDataTemplate}" HeaderTemplate="{StaticResource EventMatchHeaderTemplate}" Visibility="{Binding EventMatchData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
                 <!-- Event Match Data Error details -->

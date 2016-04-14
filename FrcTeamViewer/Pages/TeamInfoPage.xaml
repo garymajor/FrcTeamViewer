@@ -71,14 +71,20 @@
 
                 <!-- Team Data Results -->
                 <TextBlock Text="Team Information" Style="{StaticResource TitleTextBlockStyle}" DataContext="{x:Bind Frame}" Visibility="{Binding PageTitleVisibility}" />
-                <!-- Change Team Button -->
-                <HyperlinkButton Command="{x:Bind tivm.ChangeSettingsCommand}" CommandParameter="{Binding ElementName=pageTeamInfoPage}" Margin="3,2,3,0">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{StaticResource TeamInfoButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
-                        <TextBlock Text="{StaticResource ChangeTeamButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
-                    </StackPanel>
-                </HyperlinkButton>
-                <StackPanel Orientation="Horizontal" Visibility="{Binding TeamData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid Height="35" Margin="0,-10,0,0" ScrollViewer.VerticalScrollMode="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="125" /> <!-- change event button -->
+                        <ColumnDefinition Width="80" />  <!-- next button -->
+                    </Grid.ColumnDefinitions>
+                    <!-- Change Team Button -->
+                    <HyperlinkButton Command="{x:Bind tivm.ChangeSettingsCommand}" CommandParameter="{Binding ElementName=pageTeamInfoPage}" Margin="0,0,0,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{StaticResource TeamInfoButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
+                            <TextBlock Text="{StaticResource ChangeTeamButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
+                        </StackPanel>
+                    </HyperlinkButton>
+                </Grid>
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding TeamData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <TextBlock Text ="Team" Style="{StaticResource TitleTextBlockStyle}" Margin="0,0,5,0" />
                     <TextBlock x:Name="txtTeamNumber" Text="{Binding TeamData.Result.team_number}" Style="{StaticResource TitleTextBlockStyle}" Margin="0,0,0,0" />
                     <TextBlock Text="-" Style="{StaticResource TitleTextBlockStyle}" Margin="5,0,5,0" />
