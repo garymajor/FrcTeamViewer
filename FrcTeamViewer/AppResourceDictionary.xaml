@@ -32,7 +32,7 @@
     <x:String x:Key="SortButtonText">Reverse Sort</x:String>
 
     <!-- Team Info Button Static Resources -->
-    <x:String x:Key="TeamInfoButtonIcon">&#xE787;</x:String>
+    <x:String x:Key="TeamInfoButtonIcon">&#xE8D4;</x:String>
     <x:String x:Key="TeamInfoButtonText">Team Info</x:String>
     <x:String x:Key="ChangeTeamButtonText">Change Team</x:String>
 
