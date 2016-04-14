@@ -21,8 +21,8 @@
                         MinWidth="{Binding ElementName=pageEventAwardsPage, Path=DataContext.PageWidth, Converter={StaticResource WidthConverter}, ConverterParameter=70}" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="{Binding name}" TextAlignment="Left" Style="{StaticResource BaseTextBlockStyle}" Margin="0,0,0,0"/>
-                <TextBlock Grid.Column="1" Text="{Binding awardees}" Style="{StaticResource BaseTextBlockStyle}" Margin="5,0,0,0"/>
+                <TextBlock Grid.Column="0" Text="{Binding name}" TextAlignment="Left" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="1" Text="{Binding awardees}" Style="{StaticResource BodyTextBlockStyle}" Margin="5,0,0,0"/>
             </Grid>
         </DataTemplate>
 
