@@ -13,35 +13,60 @@
         <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <local:WidthConverter x:Key="WidthConverter" />
 
+        <DataTemplate x:Key="EventRankingHeaderTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="45" Width="45" MaxWidth="45"/> <!-- Rank -->
+                    <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50" /> <!-- Team -->
+                    <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55" /> <!-- Ranking Score -->
+                    <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55" /> <!-- Auto -->
+                    <ColumnDefinition MinWidth="65" Width="65" MaxWidth="65" /> <!-- Scale/Challenge -->
+                    <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55" /> <!-- Goals -->
+                    <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55" /> <!-- Defense -->
+                    <ColumnDefinition MinWidth="60" Width="60" MaxWidth="60" /> <!-- Record (W-L-T) -->
+                    <ColumnDefinition MinWidth="40" Width="40" MaxWidth="40" /> <!-- Played -->
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="R"  Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="5,0,0,0"/>
+                <TextBlock Grid.Column="1" Text="Team"  Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="2" Text="Score" Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="3" Text="Auto"  Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="4" Text="Scl/Ch" Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="5" Text="Goals" Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="6" Text="Def"   Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="7" Text="Record" Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="8" Text="Pl"    Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
+            </Grid>
+        </DataTemplate>
+        
         <DataTemplate x:Key="EventRankingDataTemplate">
             <Grid x:Name="gridEventRanking">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="35" /> <!-- Rank -->
-                    <ColumnDefinition Width="50" /> <!-- Team -->
-                    <ColumnDefinition Width="55" /> <!-- Ranking Score -->
-                    <ColumnDefinition Width="55" /> <!-- Auto -->
-                    <ColumnDefinition Width="65" /> <!-- Scale/Challenge -->
-                    <ColumnDefinition Width="55" /> <!-- Goals -->
-                    <ColumnDefinition Width="55" /> <!-- Defense -->
-                    <ColumnDefinition Width="60" /> <!-- Record (W-L-T) -->
-                    <ColumnDefinition Width="40" /> <!-- Played -->
+                    <ColumnDefinition MinWidth="45" Width="45" MaxWidth="45"/> <!-- Rank -->
+                    <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50"/> <!-- Team -->
+                    <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55"/> <!-- Ranking Score -->
+                    <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55"/> <!-- Auto -->
+                    <ColumnDefinition MinWidth="65" Width="65" MaxWidth="65"/> <!-- Scale/Challenge -->
+                    <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55"/> <!-- Goals -->
+                    <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55"/> <!-- Defense -->
+                    <ColumnDefinition MinWidth="60" Width="60" MaxWidth="60"/> <!-- Record (W-L-T) -->
+                    <ColumnDefinition MinWidth="40" Width="40" MaxWidth="40"/> <!-- Played -->
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="{Binding rank}" TextAlignment="Left" Style="{StaticResource BaseTextBlockStyle}" Margin="0,0,0,0"/>
-                <TextBlock Grid.Column="1" Text="{Binding team}" Style="{StaticResource BaseTextBlockStyle}" Margin="5,0,0,0"/>
-                <TextBlock Grid.Column="2" Text="{Binding ranking_score}" Style="{StaticResource BaseTextBlockStyle}" Margin="5,0,0,0"/>
-                <TextBlock Grid.Column="3" Text="{Binding auto}" Style="{StaticResource BaseTextBlockStyle}" Margin="5,0,0,0"/>
-                <TextBlock Grid.Column="4" Text="{Binding scale_challenge}" Style="{StaticResource BaseTextBlockStyle}" Margin="5,0,0,0"/>
-                <TextBlock Grid.Column="5" Text="{Binding goals}" Style="{StaticResource BaseTextBlockStyle}" Margin="5,0,0,0"/>
-                <TextBlock Grid.Column="6" Text="{Binding defense}" Style="{StaticResource BaseTextBlockStyle}" Margin="5,0,0,0"/>
-                <TextBlock Grid.Column="7" Text="{Binding record_w_l_t}" Style="{StaticResource BaseTextBlockStyle}" Margin="5,0,0,0"/>
-                <TextBlock Grid.Column="8" Text="{Binding played}" Style="{StaticResource BaseTextBlockStyle}" Margin="5,0,0,0"/>
+                <TextBlock Grid.Column="0" Text="{Binding rank}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="1" Text="{Binding team}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="2" Text="{Binding ranking_score}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="3" Text="{Binding auto}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="4" Text="{Binding scale_challenge}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="5" Text="{Binding goals}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="6" Text="{Binding defense}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="7" Text="{Binding record_w_l_t}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="8" Text="{Binding played}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
             </Grid>
         </DataTemplate>
 
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ScrollViewer Padding="{x:Bind Frame.Padding, Mode=OneWay}">
+        <ScrollViewer Padding="{x:Bind Frame.Padding, Mode=OneWay}" HorizontalScrollBarVisibility="Auto">
             <StackPanel>
                 <!-- Event Data Busy indicator -->
                 <TextBlock Text="Loading Event Information..." Style="{StaticResource BodyTextBlockStyle}" Visibility="{Binding EventData.IsNotCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
@@ -79,7 +104,7 @@
                         <TextBlock Text="{StaticResource RefreshButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
                     </StackPanel>
                 </HyperlinkButton>
-                <ListView ItemsSource="{Binding EventRankingData.Result}" x:Name="listEventRanking" ItemTemplate="{StaticResource EventRankingDataTemplate}" Visibility="{Binding EventRankingData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <ListView ItemsSource="{Binding EventRankingData.Result}" x:Name="listEventRanking" ItemTemplate="{StaticResource EventRankingDataTemplate}" HeaderTemplate="{StaticResource EventRankingHeaderTemplate}" Visibility="{Binding EventRankingData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
                 <!-- Event Ranking Data Error details -->
                 <TextBlock Text="{Binding EventRankingData.ErrorMessage}" FontWeight="Bold" Foreground="Red" Visibility="{Binding EventRankingData.IsFaulted, Converter={StaticResource BooleanToVisibilityConverter}}"/>
