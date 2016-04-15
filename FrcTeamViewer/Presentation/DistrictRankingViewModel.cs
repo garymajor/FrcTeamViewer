@@ -58,11 +58,11 @@ namespace FrcTeamViewer.Presentation
         /// <summary>
         /// Change Event Command
         /// </summary>
-        public ICommand ChangeEventCommand
+        public ICommand ChangeTeamCommand
         {
             get
             {
-                return changeEventCommand;
+                return changeTeamCommand;
             }
         }
 
@@ -82,7 +82,7 @@ namespace FrcTeamViewer.Presentation
         /// </summary>
         public DistrictRankingViewModel()
         {
-            changeEventCommand = new DelegateCommand(ChangeEvent);
+            changeTeamCommand = new DelegateCommand(ChangeTeam);
             refreshCommand = new DelegateCommand(RefreshList);
             svm = new SettingsViewModel();
             apiClient = new ApiClient();
@@ -93,7 +93,7 @@ namespace FrcTeamViewer.Presentation
         /// <summary>
         /// Internal change event command to use as a DelegateCommand.
         /// </summary>
-        private ICommand changeEventCommand;
+        private ICommand changeTeamCommand;
 
         /// <summary>
         /// Internal refresh command to use as a DelegateCommand.
@@ -124,8 +124,9 @@ namespace FrcTeamViewer.Presentation
         /// Code for the Change Event Command
         /// </summary>
         /// <param name="p">The object passed from the view</param>
-        private void ChangeEvent(object p)
+        private void ChangeTeam(object p)
         {
+            svm.TeamNumber = (string)p;
             CurrentPage.Frame.Navigate(typeof(TeamInfoPage));
         }
 

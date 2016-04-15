@@ -17,29 +17,31 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition MinWidth="45" Width="45" MaxWidth="45"/> <!-- Rank -->
-                    <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50" /> <!-- Team -->
                     <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55" /> <!-- Point Total -->
+                    <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50" /> <!-- Team -->
                     <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55" /> <!-- Rookie Bonus -->
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="R"  Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="5,0,0,0"/>
-                <TextBlock Grid.Column="1" Text="Team"  Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
-                <TextBlock Grid.Column="2" Text="Points" Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="1" Text="Points" Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="2" Text="Team"  Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
                 <TextBlock Grid.Column="3" Text="Rookie"  Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
             </Grid>
         </DataTemplate>
         
         <DataTemplate x:Key="DistrictRankingDataTemplate">
-            <Grid x:Name="gridEventRanking">
+            <Grid x:Name="gridDistrictRanking">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition MinWidth="45" Width="45" MaxWidth="45"/> <!-- Rank -->
-                    <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50"/> <!-- Team -->
                     <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55"/> <!-- Point Total -->
+                    <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50"/> <!-- Team -->
                     <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55"/> <!-- Rookie Bonus -->
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="{Binding rank}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
-                <TextBlock Grid.Column="1" Text="{Binding TeamNumber}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
-                <TextBlock Grid.Column="2" Text="{Binding point_total}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
-                <TextBlock Grid.Column="3" Text="{Binding rookie_bonus}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="0" Text="{Binding rank}" TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="1" Text="{Binding point_total}" TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <HyperlinkButton Grid.Column="2" Command="{Binding ElementName=pageDistrictRankingPage, Path=DataContext.ChangeTeamCommand}" CommandParameter="{Binding TeamNumber}" >
+                    <TextBlock Text="{Binding TeamNumber}" Style="{StaticResource BodyTextBlockStyle}" />
+                </HyperlinkButton>
+                <TextBlock Grid.Column="3" Text="{Binding rookie_bonus}" TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
             </Grid>
         </DataTemplate>
 
@@ -86,7 +88,7 @@
                 <!-- Event Ranking Data Results -->
                 <StackPanel Orientation="Horizontal">
                     <TextBlock x:Name="txtDistrictName" Text="{Binding DistrictName.Result}" Style="{StaticResource TitleTextBlockStyle}" Margin="0,10,0,0" Visibility="{Binding DistrictName.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                    <TextBlock Text="District Ranking List" Style="{StaticResource TitleTextBlockStyle}" Visibility="{Binding DistrictRankingData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="5,10,0,0"/>
+                    <TextBlock Text="District Ranking List" Style="{StaticResource TitleTextBlockStyle}" Visibility="{Binding DistrictName.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="5,10,0,0"/>
                 </StackPanel>
                 <ListView ItemsSource="{Binding DistrictRankingData.Result}" x:Name="listDistrictRanking" ItemTemplate="{StaticResource DistrictRankingDataTemplate}" HeaderTemplate="{StaticResource DistrictRankingHeaderTemplate}" Visibility="{Binding EventRankingData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
