@@ -74,13 +74,20 @@
                 <Grid Height="35" Margin="0,-10,0,0" ScrollViewer.VerticalScrollMode="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="125" /> <!-- change event button -->
-                        <ColumnDefinition Width="80" />  <!-- next button -->
+                        <ColumnDefinition Width="130" />  <!-- district ranking button -->
                     </Grid.ColumnDefinitions>
                     <!-- Change Team Button -->
-                    <HyperlinkButton Command="{x:Bind tivm.ChangeSettingsCommand}" CommandParameter="{Binding ElementName=pageTeamInfoPage}" Margin="0,0,0,0">
+                    <HyperlinkButton Grid.Column="0" Command="{x:Bind tivm.ChangeSettingsCommand}" CommandParameter="{Binding ElementName=pageTeamInfoPage}" Margin="0,0,0,0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{StaticResource TeamInfoButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
                             <TextBlock Text="{StaticResource ChangeTeamButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
+                        </StackPanel>
+                    </HyperlinkButton>
+                    <!-- District Ranking Button -->
+                    <HyperlinkButton Grid.Column="1" Command="{x:Bind tivm.ShowDistrictRankingCommand}" Visibility="{x:Bind tivm.IsTeamInDistrict, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,0,0,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{StaticResource RankingListButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
+                            <TextBlock Text="District Ranking" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
                         </StackPanel>
                     </HyperlinkButton>
                 </Grid>

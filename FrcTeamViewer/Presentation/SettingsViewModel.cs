@@ -26,6 +26,24 @@ namespace FrcTeamViewer.Presentation
         }
 
         /// <summary>
+        /// The district key to persist.
+        /// </summary>
+        public string DistrictKey
+        {
+            get
+            {
+                return districtKey;
+            }
+            set
+            {
+                districtKey = value;
+                OnPropertyChanged("DistrictKey");
+                StoreDistrictKey();
+            }
+        }
+
+
+        /// <summary>
         /// The event key to persist.
         /// </summary>
         public string EventKey
@@ -76,6 +94,7 @@ namespace FrcTeamViewer.Presentation
 
         private string teamNumber { get; set; }
         private string eventKey { get; set; }
+        private string districtKey { get; set; }
         private int teamMatchSortOrder { get; set; }
         private int eventMatchSortOrder { get; set; }
         private ApplicationDataContainer localSettings;
@@ -116,6 +135,7 @@ namespace FrcTeamViewer.Presentation
         {
             teamNumber = (string)localSettings.Values["TeamNumber"];
             eventKey = (string)localSettings.Values["EventKey"];
+            districtKey = (string)localSettings.Values["DistrictKey"];
 
             if (localSettings.Values.ContainsKey("TeamMatchSortOrder"))
             {
@@ -144,6 +164,14 @@ namespace FrcTeamViewer.Presentation
         private void StoreTeamNumber()
         {
             localSettings.Values["TeamNumber"] = teamNumber;
+        }
+
+        /// <summary>
+        /// Store the district key state setting to the local store.
+        /// </summary>
+        private void StoreDistrictKey()
+        {
+            localSettings.Values["DistrictKey"] = districtKey;
         }
 
         /// <summary>

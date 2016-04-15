@@ -1,0 +1,98 @@
+﻿<Page
+    x:Class="FrcTeamViewer.Pages.DistrictRankingPage"
+    Name="pageDistrictRankingPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FrcTeamViewer.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    SizeChanged="pageDistrictRankingPage_SizeChanged"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <local:WidthConverter x:Key="WidthConverter" />
+
+        <DataTemplate x:Key="DistrictRankingHeaderTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="45" Width="45" MaxWidth="45"/> <!-- Rank -->
+                    <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50" /> <!-- Team -->
+                    <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55" /> <!-- Point Total -->
+                    <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55" /> <!-- Rookie Bonus -->
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="R"  Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="5,0,0,0"/>
+                <TextBlock Grid.Column="1" Text="Team"  Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="2" Text="Points" Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="3" Text="Rookie"  Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
+            </Grid>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="DistrictRankingDataTemplate">
+            <Grid x:Name="gridEventRanking">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="45" Width="45" MaxWidth="45"/> <!-- Rank -->
+                    <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50"/> <!-- Team -->
+                    <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55"/> <!-- Point Total -->
+                    <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55"/> <!-- Rookie Bonus -->
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding rank}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="1" Text="{Binding TeamNumber}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="2" Text="{Binding point_total}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="3" Text="{Binding rookie_bonus}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+            </Grid>
+        </DataTemplate>
+
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ScrollViewer Padding="{x:Bind Frame.Padding, Mode=OneWay}" HorizontalScrollBarVisibility="Auto">
+            <StackPanel>
+                <!-- Event Data Busy indicator -->
+                <TextBlock Text="Loading District Name..." Style="{StaticResource BodyTextBlockStyle}" Visibility="{Binding DistrictName.IsNotCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <ProgressBar IsIndeterminate="True" Visibility="{Binding DistrictName.IsNotCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                <!-- Event Data Results -->
+                <TextBlock Text="District Information" Style="{StaticResource TitleTextBlockStyle}" DataContext="{x:Bind Frame}" Visibility="{Binding PageTitleVisibility}" />
+                <Grid Height="35" Margin="0,-10,0,0" ScrollViewer.VerticalScrollMode="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="125" /> <!-- change event button-->
+                        <ColumnDefinition Width="80" />  <!-- refresh button -->
+                    </Grid.ColumnDefinitions>
+                    <!-- Change Event Button -->
+                    <!-- 
+                    <HyperlinkButton Grid.Column="0" x:Name="btnChangeEvent" Command="{x:Bind ervm.ChangeEventCommand}" Margin="0,0,0,0" >
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{StaticResource ChangeEventButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
+                            <TextBlock Text="{StaticResource ChangeEventButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
+                        </StackPanel>
+                    </HyperlinkButton>
+                    -->
+                    <!-- Refresh Button -->
+                    <HyperlinkButton Grid.Column="0" x:Name="btnRefresh" Command="{x:Bind drvm.RefreshCommand}" Margin="0,0,0,0" >
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{StaticResource RefreshButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
+                            <TextBlock Text="{StaticResource RefreshButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
+                        </StackPanel>
+                    </HyperlinkButton>
+                </Grid>
+                <!-- District Data Error details -->
+                <TextBlock Text="{Binding DistrictName.ErrorMessage}" FontWeight="Bold" Foreground="Red" Visibility="{Binding DistrictName.IsFaulted, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                <!-- District Ranking Data Busy indicator -->
+                <TextBlock Text="Loading Ranking List..." Style="{StaticResource BodyTextBlockStyle}" Visibility="{Binding DistrictRankingData.IsNotCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,10,0,0" />
+                <ProgressBar IsIndeterminate="True" Visibility="{Binding DistrictRankingData.IsNotCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                <!-- Event Ranking Data Results -->
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock x:Name="txtDistrictName" Text="{Binding DistrictName.Result}" Style="{StaticResource TitleTextBlockStyle}" Margin="0,10,0,0" Visibility="{Binding DistrictName.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <TextBlock Text="District Ranking List" Style="{StaticResource TitleTextBlockStyle}" Visibility="{Binding DistrictRankingData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="5,10,0,0"/>
+                </StackPanel>
+                <ListView ItemsSource="{Binding DistrictRankingData.Result}" x:Name="listDistrictRanking" ItemTemplate="{StaticResource DistrictRankingDataTemplate}" HeaderTemplate="{StaticResource DistrictRankingHeaderTemplate}" Visibility="{Binding EventRankingData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                <!-- Event Ranking Data Error details -->
+                <TextBlock Text="{Binding DistrictRankingData.ErrorMessage}" FontWeight="Bold" Foreground="Red" Visibility="{Binding DistrictRankingData.IsFaulted, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

@@ -24,6 +24,38 @@ namespace FrcTeamViewer.Presentation
         public NotifyTaskCompletion<ObservableCollection<EventInformation>> TeamEventData { get; private set; }
 
         /// <summary>
+        /// The Team District Key, using the given team number -- loaded async
+        /// </summary>
+        public NotifyTaskCompletion<string> DistrictKey
+        {
+            get
+            {
+                return districtKey;
+            }
+            private set
+            {
+                districtKey = value;
+                OnPropertyChanged("DistrictKey");
+            }
+        }
+
+        /// <summary>
+        /// Returns whether team is in a district (will return false until data is returned)
+        /// </summary>
+        public bool IsTeamInDistrict
+        {
+            get
+            {
+                return isTeamInDistrict;
+            }
+            private set
+            {
+                isTeamInDistrict = value;
+                OnPropertyChanged("IsTeamInDistrict");
+            }
+        }
+
+        /// <summary>
         /// The current page
         /// </summary>
         public Page CurrentPage { get; set; } // gets set by the Page when it initializes
@@ -32,6 +64,11 @@ namespace FrcTeamViewer.Presentation
         /// Internal change settings command to use as a DelegateCommand
         /// </summary>
         private ICommand changeSettingsCommand;
+
+        /// <summary>
+        /// Internal show district ranking command to use as a DelegateCommand
+        /// </summary>
+        private ICommand showDistrictRankingCommand;
 
         /// <summary>
         /// Internal show event awards command to use as a DelegateCommand
@@ -76,6 +113,17 @@ namespace FrcTeamViewer.Presentation
             get
             {
                 return changeSettingsCommand;
+            }
+        }
+
+        /// <summary>
+        /// Show District Ranking Command
+        /// </summary>
+        public ICommand ShowDistrictRankingCommand
+        {
+            get
+            {
+                return showDistrictRankingCommand;
             }
         }
 
@@ -139,7 +187,9 @@ namespace FrcTeamViewer.Presentation
         /// </summary>
         public TeamInfoViewModel()
         {
+            IsTeamInDistrict = false; // will be changed in LoadDistrictKey if the team is in a district
             changeSettingsCommand = new DelegateCommand(ChangeSettings);
+            showDistrictRankingCommand = new DelegateCommand(ShowDistrictRanking);
             showEventAwardsCommand = new DelegateCommand(ShowEventAwards);
             showEventMatchesCommand = new DelegateCommand(ShowEventMatches);
             showEventRankingCommand = new DelegateCommand(ShowEventRanking);
@@ -149,7 +199,18 @@ namespace FrcTeamViewer.Presentation
             apiClient = new ApiClient();
             TeamData = new NotifyTaskCompletion<TeamInformation>(LoadTeamData(svm.TeamNumber));
             TeamEventData = new NotifyTaskCompletion<ObservableCollection<EventInformation>>(LoadTeamEventData(svm.TeamNumber));
+            DistrictKey = new NotifyTaskCompletion<string>(LoadDistrictKey(svm.TeamNumber));
         }
+
+        /// <summary>
+        /// Internal district key
+        /// </summary>
+        private NotifyTaskCompletion<string> districtKey { get; set; }
+
+        /// <summary>
+        /// Internal indicator - true if the team is in a district, false if they are not. Only set true by LoadDistrictKey.
+        /// </summary>
+        private bool isTeamInDistrict { get; set; }
 
         /// <summary>
         /// Change Settings Command implementation
@@ -158,6 +219,15 @@ namespace FrcTeamViewer.Presentation
         private void ChangeSettings(object p)
         {
             ((TeamInfoPage)p).Frame.Navigate(typeof(SettingsPage));
+        }
+
+        /// <summary>
+        /// Show Event Ranking Command implementation
+        /// </summary>
+        /// <param name="p"></param>
+        private void ShowDistrictRanking(object p)
+        {
+            CurrentPage.Frame.Navigate(typeof(DistrictRankingPage));
         }
 
         /// <summary>
@@ -239,6 +309,19 @@ namespace FrcTeamViewer.Presentation
             // Sort the events before we return them.
             var sortedresult = tei.OrderBy(teamevent => teamevent.start_date).Select(teamevent => teamevent);
             return new ObservableCollection<EventInformation>(sortedresult);
+        }
+
+        /// <summary>
+        /// Function to load the district code (e.g., pnw) for the team into the view model.
+        /// </summary>
+        /// <param name="teamnumber">The team number</param>
+        /// <returns>district code or string.Empty</returns>
+        private async Task<string> LoadDistrictKey(string teamnumber)
+        {
+            var s = await apiClient.TeamApi.GetTeamDistrict(teamnumber);
+            IsTeamInDistrict = (s.CompareTo(string.Empty) == 0) ? false : true;
+            svm.DistrictKey = s;
+            return s;
         }
     }
 }
