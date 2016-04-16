@@ -7,6 +7,7 @@
     xmlns:local="using:FrcTeamViewer.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Loaded="pageSettingsPage_Loaded"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -18,9 +19,9 @@
         <ScrollViewer Padding="{x:Bind Frame.Padding, Mode=OneWay}">
             <StackPanel>
                 <TextBlock Text="Settings" Style="{StaticResource TitleTextBlockStyle}" DataContext="{x:Bind Frame}" Visibility="{Binding PageTitleVisibility}" />
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" >
                     <TextBlock Text="Team:" Style="{StaticResource SubtitleTextBlockStyle}" VerticalAlignment="Center" Margin="0,0,0,0"/>
-                    <TextBox x:Name="TeamNumber" InputScope="Number" Height="10" Margin="5,0,0,0" Text="{x:Bind svm.TeamNumber, Mode=TwoWay}" KeyUp="TextBox_KeyUp" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtTeamNumber" InputScope="Number" Height="10" Margin="5,0,0,0" Text="{x:Bind svm.TeamNumber, Mode=TwoWay}" KeyUp="TextBox_KeyUp" VerticalAlignment="Center"/>
                     <HyperlinkButton x:Name="btnViewTeam" Margin="5,0,0,0" Command="{x:Bind svm.ViewTeamInfoCommand}" VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{StaticResource TeamInfoButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />

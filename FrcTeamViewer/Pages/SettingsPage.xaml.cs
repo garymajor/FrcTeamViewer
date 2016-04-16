@@ -30,5 +30,11 @@ namespace FrcTeamViewer.Pages
                 svm.ViewTeamInfoCommand.Execute(btnViewTeam);
             }
         }
+
+        private void pageSettingsPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            txtTeamNumber.Focus(FocusState.Keyboard);
+            txtTeamNumber.SelectAll();
+        }
     }
 }
