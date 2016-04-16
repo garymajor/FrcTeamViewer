@@ -19,9 +19,9 @@
             <StackPanel>
                 <TextBlock Text="Settings" Style="{StaticResource TitleTextBlockStyle}" DataContext="{x:Bind Frame}" Visibility="{Binding PageTitleVisibility}" />
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Team:" Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBox x:Name="TeamNumber" InputScope="Number" Margin="5,0,0,0" Text="{x:Bind svm.TeamNumber, Mode=TwoWay}" KeyUp="TextBox_KeyUp"/>
-                    <HyperlinkButton x:Name="btnViewTeam" Margin="5,0,0,0" Command="{x:Bind svm.ViewTeamInfoCommand}">
+                    <TextBlock Text="Team:" Style="{StaticResource SubtitleTextBlockStyle}" VerticalAlignment="Center" Margin="0,0,0,0"/>
+                    <TextBox x:Name="TeamNumber" InputScope="Number" Height="10" Margin="5,0,0,0" Text="{x:Bind svm.TeamNumber, Mode=TwoWay}" KeyUp="TextBox_KeyUp" VerticalAlignment="Center"/>
+                    <HyperlinkButton x:Name="btnViewTeam" Margin="5,0,0,0" Command="{x:Bind svm.ViewTeamInfoCommand}" VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{StaticResource TeamInfoButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
                             <TextBlock Text="{StaticResource TeamInfoButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0"/>
