@@ -21,7 +21,7 @@
 
     <!-- Ranking List Button Static Resources -->
     <x:String x:Key="RankingListButtonIcon">&#xE7AC;</x:String>
-    <x:String x:Key="RankingListButtonText">Ranking LIst</x:String>
+    <x:String x:Key="RankingListButtonText">Ranking List</x:String>
 
     <!-- Refresh Button Static Resources -->
     <x:String x:Key="RefreshButtonIcon">&#xE72C;</x:String>
