@@ -17,8 +17,8 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition MinWidth="45" Width="45" MaxWidth="45"/> <!-- Rank -->
-                    <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50" /> <!-- Team -->
                     <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55" /> <!-- Ranking Score -->
+                    <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50" /> <!-- Team -->
                     <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55" /> <!-- Auto -->
                     <ColumnDefinition MinWidth="65" Width="65" MaxWidth="65" /> <!-- Scale/Challenge -->
                     <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55" /> <!-- Goals -->
@@ -27,8 +27,8 @@
                     <ColumnDefinition MinWidth="40" Width="40" MaxWidth="40" /> <!-- Played -->
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="R"  Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="5,0,0,0"/>
-                <TextBlock Grid.Column="1" Text="Team"  Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
-                <TextBlock Grid.Column="2" Text="Score" Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="1" Text="Score" Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="2" Text="Team"  Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
                 <TextBlock Grid.Column="3" Text="Auto"  Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
                 <TextBlock Grid.Column="4" Text="Scl/Ch" Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
                 <TextBlock Grid.Column="5" Text="Goals" Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
@@ -42,8 +42,8 @@
             <Grid x:Name="gridEventRanking">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition MinWidth="45" Width="45" MaxWidth="45"/> <!-- Rank -->
-                    <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50"/> <!-- Team -->
                     <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55"/> <!-- Ranking Score -->
+                    <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50"/> <!-- Team -->
                     <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55"/> <!-- Auto -->
                     <ColumnDefinition MinWidth="65" Width="65" MaxWidth="65"/> <!-- Scale/Challenge -->
                     <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55"/> <!-- Goals -->
@@ -51,15 +51,17 @@
                     <ColumnDefinition MinWidth="60" Width="60" MaxWidth="60"/> <!-- Record (W-L-T) -->
                     <ColumnDefinition MinWidth="40" Width="40" MaxWidth="40"/> <!-- Played -->
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="{Binding rank}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
-                <TextBlock Grid.Column="1" Text="{Binding team}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
-                <TextBlock Grid.Column="2" Text="{Binding ranking_score}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
-                <TextBlock Grid.Column="3" Text="{Binding auto}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
-                <TextBlock Grid.Column="4" Text="{Binding scale_challenge}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
-                <TextBlock Grid.Column="5" Text="{Binding goals}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
-                <TextBlock Grid.Column="6" Text="{Binding defense}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
-                <TextBlock Grid.Column="7" Text="{Binding record_w_l_t}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
-                <TextBlock Grid.Column="8" Text="{Binding played}" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="0" Text="{Binding rank}" TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="1" Text="{Binding ranking_score}" TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <HyperlinkButton Grid.Column="2" Command="{Binding ElementName=pageEventRankingPage, Path=DataContext.ChangeTeamCommand}" CommandParameter="{Binding team}" >
+                    <TextBlock Text="{Binding team}" Style="{StaticResource BodyTextBlockStyle}" />
+                </HyperlinkButton>
+                <TextBlock Grid.Column="3" Text="{Binding auto}" TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="4" Text="{Binding scale_challenge}" TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="5" Text="{Binding goals}" TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="6" Text="{Binding defense}" TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="7" Text="{Binding record_w_l_t}" TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="8" Text="{Binding played}" TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
             </Grid>
         </DataTemplate>
 
