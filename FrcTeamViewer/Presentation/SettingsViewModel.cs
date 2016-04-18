@@ -42,7 +42,6 @@ namespace FrcTeamViewer.Presentation
             }
         }
 
-
         /// <summary>
         /// The event key to persist.
         /// </summary>
@@ -79,6 +78,22 @@ namespace FrcTeamViewer.Presentation
         /// <summary>
         /// The team match sort setting to persist.
         /// </summary>
+        public int TeamEventSortOrder
+        {
+            get
+            {
+                return teamEventSortOrder;
+            }
+            set
+            {
+                teamEventSortOrder = value;
+                StoreTeamEventSortOrder();
+            }
+        }
+        
+        /// <summary>
+        /// The team match sort setting to persist.
+        /// </summary>
         public int TeamMatchSortOrder
         {
             get
@@ -95,6 +110,7 @@ namespace FrcTeamViewer.Presentation
         private string teamNumber { get; set; }
         private string eventKey { get; set; }
         private string districtKey { get; set; }
+        private int teamEventSortOrder { get; set; }
         private int teamMatchSortOrder { get; set; }
         private int eventMatchSortOrder { get; set; }
         private ApplicationDataContainer localSettings;
@@ -137,6 +153,18 @@ namespace FrcTeamViewer.Presentation
             eventKey = (string)localSettings.Values["EventKey"];
             districtKey = (string)localSettings.Values["DistrictKey"];
 
+            // Team Event Sort Order
+            if (localSettings.Values.ContainsKey("TeamEventSortOrder"))
+            {
+                teamEventSortOrder = (int)localSettings.Values["TeamEventSortOrder"];
+            }
+            else
+            {
+                // go ahead and set the default sort order (ascending)
+                TeamEventSortOrder = int.MaxValue;
+            }
+
+            // Team Match Sort Order
             if (localSettings.Values.ContainsKey("TeamMatchSortOrder"))
             {
                 teamMatchSortOrder = (int)localSettings.Values["TeamMatchSortOrder"];
@@ -147,6 +175,7 @@ namespace FrcTeamViewer.Presentation
                 TeamMatchSortOrder = int.MaxValue;
             }
 
+            // Event Match Sort Order
             if (localSettings.Values.ContainsKey("EventMatchSortOrder"))
             {
                 eventMatchSortOrder = (int)localSettings.Values["EventMatchSortOrder"];
@@ -191,7 +220,15 @@ namespace FrcTeamViewer.Presentation
         }
 
         /// <summary>
-        /// Store the event match sort order state setting to the local store.
+        /// Store the team match sort order state setting to the local store.
+        /// </summary>
+        private void StoreTeamEventSortOrder()
+        {
+            localSettings.Values["TeamEventSortOrder"] = teamEventSortOrder;
+        }
+
+        /// <summary>
+        /// Store the team match sort order state setting to the local store.
         /// </summary>
         private void StoreTeamMatchSortOrder()
         {
