@@ -75,7 +75,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="120" /> <!-- change team button -->
                         <ColumnDefinition Width="115" /> <!-- district ranking button -->
-                        <ColumnDefinition Width="125" /> <!-- reverse sort button -->
+                        <ColumnDefinition Width="130" /> <!-- reverse sort button -->
                     </Grid.ColumnDefinitions>
                     <!-- Change Team Button -->
                     <HyperlinkButton Grid.Column="0" Command="{x:Bind tivm.ChangeSettingsCommand}" CommandParameter="{Binding ElementName=pageTeamInfoPage}" Margin="0,0,0,0">
