@@ -56,7 +56,7 @@ namespace FrcTeamViewer.Presentation
         }
 
         /// <summary>
-        /// Change Event Command
+        /// Change Team Command
         /// </summary>
         public ICommand ChangeTeamCommand
         {
@@ -78,12 +78,24 @@ namespace FrcTeamViewer.Presentation
         }
 
         /// <summary>
+        /// View Team Command
+        /// </summary>
+        public ICommand ViewTeamCommand
+        {
+            get
+            {
+                return viewTeamCommand;
+            }
+        }
+
+        /// <summary>
         /// Constructor - Note: Initiates async loading of data for the view
         /// </summary>
         public DistrictRankingViewModel()
         {
             changeTeamCommand = new DelegateCommand(ChangeTeam);
             refreshCommand = new DelegateCommand(RefreshList);
+            viewTeamCommand = new DelegateCommand(ViewTeam);
             svm = new SettingsViewModel();
             apiClient = new ApiClient();
             DistrictName = new NotifyTaskCompletion<string>(LoadDistrictName(svm.DistrictKey));
@@ -91,7 +103,7 @@ namespace FrcTeamViewer.Presentation
         }
 
         /// <summary>
-        /// Internal change event command to use as a DelegateCommand.
+        /// Internal change team command to use as a DelegateCommand.
         /// </summary>
         private ICommand changeTeamCommand;
 
@@ -99,7 +111,12 @@ namespace FrcTeamViewer.Presentation
         /// Internal refresh command to use as a DelegateCommand.
         /// </summary>
         private ICommand refreshCommand;
-        
+
+        /// <summary>
+        /// Internal view team command to use as a DelegateCommand.
+        /// </summary>
+        private ICommand viewTeamCommand;
+
         /// <summary>
         /// Internal event ranking data
         /// </summary>
@@ -121,7 +138,7 @@ namespace FrcTeamViewer.Presentation
         private double pageWidth { get; set; }
 
         /// <summary>
-        /// Code for the Change Event Command
+        /// Code for the Change Team Command
         /// </summary>
         /// <param name="p">The object passed from the view</param>
         private void ChangeTeam(object p)
@@ -137,6 +154,15 @@ namespace FrcTeamViewer.Presentation
         private void RefreshList(object p)
         {
             DistrictRankingData = new NotifyTaskCompletion<ObservableCollection<DistrictRankingInformation>>(LoadDistrictRankingData(svm.DistrictKey));
+        }
+
+        /// <summary>
+        /// Code for the View Team Command
+        /// </summary>
+        /// <param name="p">The object passed from the view</param>
+        private void ViewTeam(object p)
+        {
+            CurrentPage.Frame.Navigate(typeof(TeamInfoPage));
         }
 
         /// <summary>
