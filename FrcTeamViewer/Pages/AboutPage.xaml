@@ -10,7 +10,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ScrollViewer Padding="{x:Bind Frame.Padding, Mode=OneWay}">
             <StackPanel>
-                <TextBlock Text="Welcome" Style="{StaticResource TitleTextBlockStyle}" DataContext="{x:Bind Frame}" Visibility="{Binding PageTitleVisibility}" />
+                <TextBlock Text="About" Style="{StaticResource TitleTextBlockStyle}" DataContext="{x:Bind Frame}" Visibility="{Binding PageTitleVisibility}" />
                 <TextBlock Style="{StaticResource ParagraphTextBlockStyle}">
                     <Run Text="Thank you for installing the FRC Team Viewer. This is a Univeral Windows project to lookup event information for a team from" />
                     <Hyperlink NavigateUri="http://thebluealliance.com/"><Run Text="The Blue Alliance"/></Hyperlink><Run Text="."/>
