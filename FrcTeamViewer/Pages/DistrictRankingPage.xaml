@@ -19,12 +19,18 @@
                     <ColumnDefinition MinWidth="45" Width="45" MaxWidth="45"/> <!-- Rank -->
                     <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55" /> <!-- Point Total -->
                     <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50" /> <!-- Team -->
+                    <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50" /> <!-- Event 1 -->
+                    <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50" /> <!-- Event 2 -->
+                    <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50" /> <!-- District Championship -->
                     <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55" /> <!-- Rookie Bonus -->
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="R"  Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="5,0,0,0"/>
                 <TextBlock Grid.Column="1" Text="Points" Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
                 <TextBlock Grid.Column="2" Text="Team"  Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
-                <TextBlock Grid.Column="3" Text="Rookie"  Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="3" Text="Event 1"  Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="4" Text="Event 2"  Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="5" Text="DC" Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="6" Text="Rookie"  Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
             </Grid>
         </DataTemplate>
         
@@ -34,6 +40,9 @@
                     <ColumnDefinition MinWidth="45" Width="45" MaxWidth="45"/> <!-- Rank -->
                     <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55"/> <!-- Point Total -->
                     <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50"/> <!-- Team -->
+                    <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50" /> <!-- Event 1 -->
+                    <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50" /> <!-- Event 2 -->
+                    <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50" /> <!-- District Championship -->
                     <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55"/> <!-- Rookie Bonus -->
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="{Binding rank}" TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
@@ -41,7 +50,10 @@
                 <HyperlinkButton Grid.Column="2" Command="{Binding ElementName=pageDistrictRankingPage, Path=DataContext.ChangeTeamCommand}" CommandParameter="{Binding TeamNumber}" >
                     <TextBlock Text="{Binding TeamNumber}" Style="{StaticResource BodyTextBlockStyle}" />
                 </HyperlinkButton>
-                <TextBlock Grid.Column="3" Text="{Binding rookie_bonus}" TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="3" Text="{Binding DistrictEvent1.total}" TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0" />
+                <TextBlock Grid.Column="4" Text="{Binding DistrictEvent2.total}" TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0" />
+                <TextBlock Grid.Column="5" Text="{Binding DistrictChampionship.total}" TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0" />
+                <TextBlock Grid.Column="6" Text="{Binding rookie_bonus}" TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
             </Grid>
         </DataTemplate>
 
