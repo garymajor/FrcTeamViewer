@@ -42,42 +42,42 @@
                 <TextBlock Grid.Column="0" Text="{Binding MatchDateTime, Converter={StaticResource DateTimeToFormattedStringConverter}}" TextAlignment="Left" VerticalAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0" />
                 <TextBlock Grid.Column="1" Text="{Binding MatchNumber}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
                 <!-- Red Alliance Teams (as links to change team) -->
-                <Grid Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{StaticResource RedAllianceBackgroundColor}" >
+                <Grid Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource RedAlliance}" >
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
                         <HyperlinkButton Command="{Binding ElementName=pageEventMatchPage, Path=DataContext.ChangeTeamCommand}" CommandParameter="{Binding alliances.RedTeamNumberList[0]}" VerticalAlignment="Center" Margin="0,0,0,0">
-                            <TextBlock Text="{Binding alliances.RedTeamNumberList[0]}" TextAlignment="Center" Margin="0,0,0,0" FontWeight="{Binding RedAllianceWin, Converter={StaticResource BooleanToFontWeightConverter}}" Foreground="{StaticResource RedAllianceForegroundColor}" />
+                            <TextBlock Text="{Binding alliances.RedTeamNumberList[0]}" TextAlignment="Center" Margin="0,0,0,0" FontWeight="{Binding RedAllianceWin, Converter={StaticResource BooleanToFontWeightConverter}}" Foreground="White" />
                         </HyperlinkButton>
                         <HyperlinkButton Command="{Binding ElementName=pageEventMatchPage, Path=DataContext.ChangeTeamCommand}" CommandParameter="{Binding alliances.RedTeamNumberList[1]}" VerticalAlignment="Center" Margin="0,0,0,0">
-                            <TextBlock Text="{Binding alliances.RedTeamNumberList[1]}" TextAlignment="Center" Margin="10,0,0,0" FontWeight="{Binding RedAllianceWin, Converter={StaticResource BooleanToFontWeightConverter}}" Foreground="{StaticResource RedAllianceForegroundColor}" />
+                            <TextBlock Text="{Binding alliances.RedTeamNumberList[1]}" TextAlignment="Center" Margin="10,0,0,0" FontWeight="{Binding RedAllianceWin, Converter={StaticResource BooleanToFontWeightConverter}}" Foreground="White" />
                         </HyperlinkButton>
                         <HyperlinkButton Command="{Binding ElementName=pageEventMatchPage, Path=DataContext.ChangeTeamCommand}" CommandParameter="{Binding alliances.RedTeamNumberList[2]}" VerticalAlignment="Center" Margin="0,0,0,0">
-                            <TextBlock Text="{Binding alliances.RedTeamNumberList[2]}" TextAlignment="Center" Margin="10,0,0,0" FontWeight="{Binding RedAllianceWin, Converter={StaticResource BooleanToFontWeightConverter}}" Foreground="{StaticResource RedAllianceForegroundColor}" />
+                            <TextBlock Text="{Binding alliances.RedTeamNumberList[2]}" TextAlignment="Center" Margin="10,0,0,0" FontWeight="{Binding RedAllianceWin, Converter={StaticResource BooleanToFontWeightConverter}}" Foreground="White" />
                         </HyperlinkButton>
                     </StackPanel>
                 </Grid>
                 <!-- Red Alliance score -->
-                <Grid Grid.Column="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{StaticResource RedAllianceBackgroundColor}" >
+                <Grid Grid.Column="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource RedAlliance}" >
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <TextBlock Text="{Binding RedAllianceScore}" Style="{StaticResource BodyTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0" FontWeight="{Binding RedAllianceWin, Converter={StaticResource BooleanToFontWeightConverter}}" Foreground="{StaticResource RedAllianceForegroundColor}" />
+                        <TextBlock Text="{Binding RedAllianceScore}" Style="{StaticResource BodyTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0" FontWeight="{Binding RedAllianceWin, Converter={StaticResource BooleanToFontWeightConverter}}" Foreground="White" />
                     </StackPanel>
                 </Grid>
                 <!-- Blue Alliance score -->
-                <Grid Grid.Column="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{StaticResource BlueAllianceBackgroundColor}" >
+                <Grid Grid.Column="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource BlueAlliance}" >
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <TextBlock Text="{Binding BlueAllianceScore}" Style="{StaticResource BodyTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0" FontWeight="{Binding BlueAllianceWin, Converter={StaticResource BooleanToFontWeightConverter}}" Foreground="{StaticResource BlueAllianceForegroundColor}" />
+                        <TextBlock Text="{Binding BlueAllianceScore}" Style="{StaticResource BodyTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0" FontWeight="{Binding BlueAllianceWin, Converter={StaticResource BooleanToFontWeightConverter}}" Foreground="White" />
                     </StackPanel>
                 </Grid>
                 <!-- Blue Alliance Teams (as links to change team) -->
-                <Grid Grid.Column="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{StaticResource BlueAllianceBackgroundColor}">
+                <Grid Grid.Column="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource BlueAlliance}">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
                         <HyperlinkButton Command="{Binding ElementName=pageEventMatchPage, Path=DataContext.ChangeTeamCommand}" CommandParameter="{Binding alliances.BlueTeamNumberList[0]}" VerticalAlignment="Center" Margin="0,0,0,0">
-                            <TextBlock Text="{Binding alliances.BlueTeamNumberList[0]}" TextAlignment="Center" Margin="0" FontWeight="{Binding BlueAllianceWin, Converter={StaticResource BooleanToFontWeightConverter}}" Foreground="{StaticResource BlueAllianceForegroundColor}" />
+                            <TextBlock Text="{Binding alliances.BlueTeamNumberList[0]}" TextAlignment="Center" Margin="0" FontWeight="{Binding BlueAllianceWin, Converter={StaticResource BooleanToFontWeightConverter}}" Foreground="White" />
                         </HyperlinkButton>
                         <HyperlinkButton Command="{Binding ElementName=pageEventMatchPage, Path=DataContext.ChangeTeamCommand}" CommandParameter="{Binding alliances.BlueTeamNumberList[1]}" VerticalAlignment="Center" Margin="0,0,0,0">
-                            <TextBlock Text="{Binding alliances.BlueTeamNumberList[1]}" TextAlignment="Center" Margin="10,0,0,0" FontWeight="{Binding BlueAllianceWin, Converter={StaticResource BooleanToFontWeightConverter}}" Foreground="{StaticResource BlueAllianceForegroundColor}" />
+                            <TextBlock Text="{Binding alliances.BlueTeamNumberList[1]}" TextAlignment="Center" Margin="10,0,0,0" FontWeight="{Binding BlueAllianceWin, Converter={StaticResource BooleanToFontWeightConverter}}" Foreground="White" />
                         </HyperlinkButton>
                         <HyperlinkButton Command="{Binding ElementName=pageEventMatchPage, Path=DataContext.ChangeTeamCommand}" CommandParameter="{Binding alliances.BlueTeamNumberList[2]}" VerticalAlignment="Center" Margin="0,0,0,0">
-                            <TextBlock Text="{Binding alliances.BlueTeamNumberList[2]}" TextAlignment="Center" Margin="10,0,0,0" FontWeight="{Binding BlueAllianceWin, Converter={StaticResource BooleanToFontWeightConverter}}" Foreground="{StaticResource BlueAllianceForegroundColor}" />
+                            <TextBlock Text="{Binding alliances.BlueTeamNumberList[2]}" TextAlignment="Center" Margin="10,0,0,0" FontWeight="{Binding BlueAllianceWin, Converter={StaticResource BooleanToFontWeightConverter}}" Foreground="White" />
                         </HyperlinkButton>
                     </StackPanel>
                 </Grid>

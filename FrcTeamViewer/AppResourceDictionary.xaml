@@ -45,9 +45,15 @@
     <x:String x:Key="TeamMatchesButtonText">Team Matches</x:String>
 
     <!-- Alliance Background/Foreground Colors (for matches, etc.) -->
-    <x:String x:Key="RedAllianceForegroundColor">#ffffff</x:String>
-    <x:String x:Key="RedAllianceBackgroundColor">#ed1c24</x:String>
-    <x:String x:Key="BlueAllianceForegroundColor">#ffffff</x:String>
-    <x:String x:Key="BlueAllianceBackgroundColor">#009cd7</x:String>
+    <Color x:Key="FirstRedColor">#ed1c24</Color>
+    <Color x:Key="FirstBlueColor">#009cd7</Color>
+
+    <Style TargetType="Grid" x:Key="RedAlliance">
+        <Setter Property="Background" Value="{StaticResource FirstRedColor}" />
+    </Style>
+
+    <Style TargetType="Grid" x:Key="BlueAlliance">
+        <Setter Property="Background" Value="{StaticResource FirstBlueColor}" />
+    </Style>
 
 </ResourceDictionary>
