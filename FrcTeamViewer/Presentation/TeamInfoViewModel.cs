@@ -21,7 +21,18 @@ namespace FrcTeamViewer.Presentation
         /// <summary>
         /// The Team Event list, using the given team number -- loaded async
         /// </summary>
-        public NotifyTaskCompletion<ObservableCollection<EventInformation>> TeamEventData { get; private set; }
+        public NotifyTaskCompletion<ObservableCollection<EventInformation>> TeamEventData
+        {
+            get
+            {
+                return teamEventData;
+            }
+            set
+            {
+                teamEventData = value;
+                OnPropertyChanged("TeamEventData");
+            }
+        }
 
         /// <summary>
         /// The Team District Key, using the given team number -- loaded async
@@ -61,6 +72,11 @@ namespace FrcTeamViewer.Presentation
         public Page CurrentPage { get; set; } // gets set by the Page when it initializes
 
         /// <summary>
+        /// Internal Team Event list
+        /// </summary>
+        private NotifyTaskCompletion<ObservableCollection<EventInformation>> teamEventData { get; set; }
+
+        /// <summary>
         /// Internal change settings command to use as a DelegateCommand
         /// </summary>
         private ICommand changeSettingsCommand;
@@ -94,6 +110,11 @@ namespace FrcTeamViewer.Presentation
         /// Internal show team matches command to use as a DelegateCommand
         /// </summary>
         private ICommand showTeamMatchesCommand;
+
+        /// <summary>
+        /// Internal sort list command to use as a DelegateCommand.
+        /// </summary>
+        private ICommand sortListCommand;
 
         /// <summary>
         /// Internal settings viewmodel to get/store app state that we want to persist from run-to-run
@@ -183,6 +204,17 @@ namespace FrcTeamViewer.Presentation
         }
 
         /// <summary>
+        /// Sort List Command
+        /// </summary>
+        public ICommand SortListCommand
+        {
+            get
+            {
+                return sortListCommand;
+            }
+        }
+
+        /// <summary>
         /// Constructor
         /// </summary>
         public TeamInfoViewModel()
@@ -195,6 +227,7 @@ namespace FrcTeamViewer.Presentation
             showEventRankingCommand = new DelegateCommand(ShowEventRanking);
             showEventTeamsCommand = new DelegateCommand(ShowEventTeams);
             showTeamMatchesCommand = new DelegateCommand(ShowTeamMatches);
+            sortListCommand = new DelegateCommand(SortList);
             svm = new SettingsViewModel();
             apiClient = new ApiClient();
             TeamData = new NotifyTaskCompletion<TeamInformation>(LoadTeamData(svm.TeamNumber));
@@ -289,6 +322,70 @@ namespace FrcTeamViewer.Presentation
         }
 
         /// <summary>
+        /// Sort List Command Execute
+        /// </summary>
+        /// <param name="p"></param>
+        private void SortList(object p)
+        {
+            ChangeSortOrder();
+            TeamEventData = new NotifyTaskCompletion<ObservableCollection<EventInformation>>(SortEventListAsync(TeamEventData.Result));
+        }
+
+        /// <summary>
+        /// Change the sort order for the list -- it toggles between ascending and descending every time it is called.
+        /// </summary>
+        private void ChangeSortOrder()
+        {
+            if (svm.TeamEventSortOrder == int.MinValue)
+            {
+                // we are sorted descending... sort ascending
+                svm.TeamEventSortOrder = int.MaxValue;
+            }
+            else
+            {
+                // we are sorted ascending... sort descending
+                svm.TeamEventSortOrder = int.MinValue;
+            }
+        }
+
+        /// <summary>
+        /// Sort List work
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        private IEnumerable<EventInformation> SortEventList(IEnumerable<EventInformation> list)
+        {
+            IEnumerable<EventInformation> sortedlist;
+
+            if (svm.TeamEventSortOrder == int.MinValue)
+            {
+                // sort descending (competition level, then by match number)
+                sortedlist = list.OrderByDescending(teamevent => teamevent.start_date).Select(teamevent => teamevent);
+            }
+            else
+            {
+                // sort ascending
+                sortedlist = list.OrderBy(teamevent => teamevent.start_date).Select(teamevent => teamevent);
+            }
+
+            return sortedlist;
+        }
+
+        /// <summary>
+        /// Function to sort existing event data that can reload the viewmodel... has to be async so that we get a Task in return, just like we do with the Load Data calls
+        /// </summary>
+        /// <param name="list">The list to sort.</param>
+        private async Task<ObservableCollection<EventInformation>> SortEventListAsync(IEnumerable<EventInformation> list)
+        {
+            // artificially make this function awaitable by waiting .001 seconds.
+            await Task.Delay(System.TimeSpan.FromMilliseconds(1)).ConfigureAwait(false);
+
+            IEnumerable<EventInformation> sortedresult = SortEventList(list);
+
+            return new ObservableCollection<EventInformation>(sortedresult);
+        }
+
+        /// <summary>
         /// Function to load the team data into the View Model.
         /// </summary>
         /// <param name="teamnumber">The team number to load.</param>
@@ -307,7 +404,7 @@ namespace FrcTeamViewer.Presentation
             List<EventInformation> tei = await apiClient.TeamApi.GetTeamEventInfoList(teamnumber);
 
             // Sort the events before we return them.
-            var sortedresult = tei.OrderBy(teamevent => teamevent.start_date).Select(teamevent => teamevent);
+            var sortedresult = SortEventList(tei);
             return new ObservableCollection<EventInformation>(sortedresult);
         }
 
