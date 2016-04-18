@@ -7,6 +7,10 @@
     <x:String x:Key="ChangeEventButtonIcon">&#xE787;</x:String>
     <x:String x:Key="ChangeEventButtonText">Change Event</x:String>
 
+    <!-- Change Event Button Static Resources -->
+    <x:String x:Key="DistrictRankingButtonIcon">&#xE90E;</x:String>
+    <x:String x:Key="DistrictRankingButtonText">District Ranking</x:String>
+
     <!-- Event Awards Button Static Resources -->
     <x:String x:Key="EventAwardsButtonIcon">&#xE734;</x:String>
     <x:String x:Key="EventAwardsButtonText">Event Awards</x:String>
