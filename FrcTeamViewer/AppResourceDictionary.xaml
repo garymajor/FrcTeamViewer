@@ -40,4 +40,10 @@
     <x:String x:Key="TeamMatchesButtonIcon">&#xE779;</x:String>
     <x:String x:Key="TeamMatchesButtonText">Team Matches</x:String>
 
+    <!-- Alliance Background/Foreground Colors (for matches, etc.) -->
+    <x:String x:Key="RedAllianceForegroundColor">#ffffff</x:String>
+    <x:String x:Key="RedAllianceBackgroundColor">#ed1c24</x:String>
+    <x:String x:Key="BlueAllianceForegroundColor">#ffffff</x:String>
+    <x:String x:Key="BlueAllianceBackgroundColor">#009cd7</x:String>
+
 </ResourceDictionary>
