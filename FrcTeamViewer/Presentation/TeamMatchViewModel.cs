@@ -209,15 +209,15 @@ namespace FrcTeamViewer.Presentation
         /// </summary>
         private void ChangeSortOrder()
         {
-            if (svm.TeamMatchSortOrder == int.MinValue)
+            if (svm.TeamMatchSortOrder == (int)SortOrder.Descending)
             {
                 // we are sorted descending... sort ascending
-                svm.TeamMatchSortOrder = int.MaxValue;
+                svm.TeamMatchSortOrder = (int)SortOrder.Ascending;
             }
             else
             {
                 // we are sorted ascending... sort descending
-                svm.TeamMatchSortOrder = int.MinValue;
+                svm.TeamMatchSortOrder = (int)SortOrder.Descending;
             }
         }
 
@@ -230,7 +230,7 @@ namespace FrcTeamViewer.Presentation
         {
             IEnumerable<MatchInformation> sortedlist;
 
-            if (svm.TeamMatchSortOrder == int.MinValue)
+            if (svm.TeamMatchSortOrder == (int)SortOrder.Descending)
             {
                 // sort descending (competition level, then by match number)
                 sortedlist = list.OrderByDescending(m => m.CompetitionLevelSortOrder).ThenByDescending(m => m.match_number).Select(m => m);

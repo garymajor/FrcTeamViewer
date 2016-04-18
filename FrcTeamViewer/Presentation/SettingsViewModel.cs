@@ -192,7 +192,7 @@ namespace FrcTeamViewer.Presentation
             else
             {
                 // go ahead and set the default sort order (ascending)
-                TeamEventSortOrder = int.MaxValue;
+                TeamEventSortOrder = (int)SortOrder.Ascending;
             }
 
             // Team Match Sort Order
@@ -203,7 +203,7 @@ namespace FrcTeamViewer.Presentation
             else
             {
                 // go ahead and set the default sort order (ascending)
-                TeamMatchSortOrder = int.MaxValue;
+                TeamMatchSortOrder = (int)SortOrder.Ascending;
             }
 
             // Event Match Sort Order
@@ -214,7 +214,7 @@ namespace FrcTeamViewer.Presentation
             else
             {
                 // go ahead and set the default sort order (ascending)
-                EventMatchSortOrder = int.MaxValue;
+                EventMatchSortOrder = (int)SortOrder.Ascending;
             }
         }
 

@@ -336,15 +336,15 @@ namespace FrcTeamViewer.Presentation
         /// </summary>
         private void ChangeSortOrder()
         {
-            if (svm.TeamEventSortOrder == int.MinValue)
+            if (svm.TeamEventSortOrder == (int)SortOrder.Descending)
             {
                 // we are sorted descending... sort ascending
-                svm.TeamEventSortOrder = int.MaxValue;
+                svm.TeamEventSortOrder = (int)SortOrder.Ascending;
             }
             else
             {
                 // we are sorted ascending... sort descending
-                svm.TeamEventSortOrder = int.MinValue;
+                svm.TeamEventSortOrder = (int)SortOrder.Descending;
             }
         }
 
@@ -357,7 +357,7 @@ namespace FrcTeamViewer.Presentation
         {
             IEnumerable<EventInformation> sortedlist;
 
-            if (svm.TeamEventSortOrder == int.MinValue)
+            if (svm.TeamEventSortOrder == (int)SortOrder.Descending)
             {
                 // sort descending (competition level, then by match number)
                 sortedlist = list.OrderByDescending(teamevent => teamevent.start_date).Select(teamevent => teamevent);
