@@ -2,6 +2,7 @@
 using Intense.Presentation;
 using System.Windows.Input;
 using Windows.Storage;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace FrcTeamViewer.Presentation
@@ -107,12 +108,30 @@ namespace FrcTeamViewer.Presentation
             }
         }
 
+        /// <summary>
+        /// The application theme (dark/light) setting to persist. When changed, immediately sets the them on the app shell.
+        /// </summary>
+        public bool DarkMode
+        {
+            get
+            {
+                return darkMode;
+            }
+            set
+            {
+                darkMode = value;
+                StoreDarkMode();
+                SetShellTheme();
+            }
+        }
+
         private string teamNumber { get; set; }
         private string eventKey { get; set; }
         private string districtKey { get; set; }
         private int teamEventSortOrder { get; set; }
         private int teamMatchSortOrder { get; set; }
         private int eventMatchSortOrder { get; set; }
+        private bool darkMode { get; set; }
         private ApplicationDataContainer localSettings;
         private ICommand viewTeamInfoCommand;
         public Page CurrentPage { get; set; } // gets set by the Page when it initializes
@@ -133,6 +152,7 @@ namespace FrcTeamViewer.Presentation
             viewTeamInfoCommand = new DelegateCommand(ViewTeamInfo);
             localSettings = ApplicationData.Current.LocalSettings;
             LoadState();
+            SetShellTheme();
         }
 
         /// <summary>
@@ -149,14 +169,25 @@ namespace FrcTeamViewer.Presentation
         /// </summary>
         private void LoadState()
         {
-            teamNumber = (string)localSettings.Values["TeamNumber"];
-            eventKey = (string)localSettings.Values["EventKey"];
-            districtKey = (string)localSettings.Values["DistrictKey"];
+            TeamNumber = (string)localSettings.Values["TeamNumber"];
+            EventKey = (string)localSettings.Values["EventKey"];
+            DistrictKey = (string)localSettings.Values["DistrictKey"];
+
+            // Dark Mode
+            if (localSettings.Values.ContainsKey("DarkMode"))
+            {
+                DarkMode = (bool)localSettings.Values["DarkMode"];
+            }
+            else
+            {
+                // set the default (off)
+                DarkMode = false;
+            }
 
             // Team Event Sort Order
             if (localSettings.Values.ContainsKey("TeamEventSortOrder"))
             {
-                teamEventSortOrder = (int)localSettings.Values["TeamEventSortOrder"];
+                TeamEventSortOrder = (int)localSettings.Values["TeamEventSortOrder"];
             }
             else
             {
@@ -167,7 +198,7 @@ namespace FrcTeamViewer.Presentation
             // Team Match Sort Order
             if (localSettings.Values.ContainsKey("TeamMatchSortOrder"))
             {
-                teamMatchSortOrder = (int)localSettings.Values["TeamMatchSortOrder"];
+                TeamMatchSortOrder = (int)localSettings.Values["TeamMatchSortOrder"];
             }
             else
             {
@@ -178,7 +209,7 @@ namespace FrcTeamViewer.Presentation
             // Event Match Sort Order
             if (localSettings.Values.ContainsKey("EventMatchSortOrder"))
             {
-                eventMatchSortOrder = (int)localSettings.Values["EventMatchSortOrder"];
+                EventMatchSortOrder = (int)localSettings.Values["EventMatchSortOrder"];
             }
             else
             {
@@ -233,6 +264,36 @@ namespace FrcTeamViewer.Presentation
         private void StoreTeamMatchSortOrder()
         {
             localSettings.Values["TeamMatchSortOrder"] = teamMatchSortOrder;
+        }
+
+        /// <summary>
+        /// Store the team match sort order state setting to the local store.
+        /// </summary>
+        private void StoreDarkMode()
+        {
+            localSettings.Values["DarkMode"] = darkMode;
+        }
+
+        /// <summary>
+        /// Sets the Theme (dark/light) on the current shell based on the app setting.
+        /// </summary>
+        public void SetShellTheme()
+        {
+            var shell = Window.Current.Content as Shell;
+            if (darkMode)
+            {
+                if (shell != null)
+                {
+                    shell.ShellContentHostObject.RequestedTheme = ElementTheme.Dark;
+                }
+            }
+            else
+            {
+                if (shell != null)
+                {
+                    shell.ShellContentHostObject.RequestedTheme = ElementTheme.Light;
+                }
+            }
         }
     }
 }

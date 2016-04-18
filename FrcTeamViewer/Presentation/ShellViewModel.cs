@@ -23,6 +23,7 @@ namespace FrcTeamViewer.Presentation
             // open splitview pane in wide state
             this.IsSplitViewPaneOpen = IsWideState();
             this.svm = new SettingsViewModel();
+            this.svm.SetShellTheme();
         }
 
         public ICommand ToggleSplitViewPaneCommand { get; private set; }

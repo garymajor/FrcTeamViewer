@@ -4,6 +4,7 @@ using System.Linq;
 using Windows.UI.Xaml.Controls;
 using FrcTeamViewer.Pages;
 using FrcTeamViewer.Presentation;
+using Windows.UI.Xaml;
 
 namespace FrcTeamViewer
 {
@@ -40,6 +41,17 @@ namespace FrcTeamViewer
         }
 
         public ShellViewModel ViewModel { get; private set; }
+
+        /// <summary>
+        /// Reference to the Shell UserControl so that we can globally change the theme.
+        /// </summary>
+        public UserControl ShellContentHostObject
+        {
+            get
+            {
+                return this.ShellHostUserControl;
+            }
+        }
 
         public Frame RootFrame
         {
