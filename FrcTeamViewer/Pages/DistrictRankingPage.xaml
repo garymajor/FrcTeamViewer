@@ -19,16 +19,16 @@
                     <ColumnDefinition MinWidth="45" Width="45" MaxWidth="45"/> <!-- Rank -->
                     <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55" /> <!-- Point Total -->
                     <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50" /> <!-- Team -->
-                    <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50" /> <!-- Event 1 -->
-                    <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50" /> <!-- Event 2 -->
-                    <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50" /> <!-- District Championship -->
+                    <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55" /> <!-- Event 1 -->
+                    <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55" /> <!-- Event 2 -->
+                    <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55" /> <!-- District Championship -->
                     <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55" /> <!-- Rookie Bonus -->
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="R"  Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="5,0,0,0"/>
                 <TextBlock Grid.Column="1" Text="Points" Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
                 <TextBlock Grid.Column="2" Text="Team"  Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
-                <TextBlock Grid.Column="3" Text="Event 1"  Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
-                <TextBlock Grid.Column="4" Text="Event 2"  Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="3" Text="Ev 1"  Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
+                <TextBlock Grid.Column="4" Text="Ev 2"  Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
                 <TextBlock Grid.Column="5" Text="DC" Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
                 <TextBlock Grid.Column="6" Text="Rookie"  Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,0"/>
             </Grid>
@@ -40,9 +40,9 @@
                     <ColumnDefinition MinWidth="45" Width="45" MaxWidth="45"/> <!-- Rank -->
                     <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55"/> <!-- Point Total -->
                     <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50"/> <!-- Team -->
-                    <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50" /> <!-- Event 1 -->
-                    <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50" /> <!-- Event 2 -->
-                    <ColumnDefinition MinWidth="50" Width="50" MaxWidth="50" /> <!-- District Championship -->
+                    <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55" /> <!-- Event 1 -->
+                    <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55" /> <!-- Event 2 -->
+                    <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55" /> <!-- District Championship -->
                     <ColumnDefinition MinWidth="55" Width="55" MaxWidth="55"/> <!-- Rookie Bonus -->
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="{Binding rank}" TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
