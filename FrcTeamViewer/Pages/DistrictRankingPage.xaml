@@ -74,14 +74,14 @@
                         <ColumnDefinition Width="80" />  <!-- refresh button -->
                     </Grid.ColumnDefinitions>
                     <!-- Team Info Button -->
-                    <HyperlinkButton Grid.Column="0" x:Name="btnChangeEvent" Command="{x:Bind drvm.ViewTeamCommand}" Margin="0,0,0,0" >
+                    <HyperlinkButton Grid.Column="0" x:Name="btnChangeEvent" Command="{x:Bind drvm.ViewTeamCommand}" Style="{StaticResource HeaderHyperlinkButton}" Margin="0,0,0,0" >
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{StaticResource TeamInfoButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
                             <TextBlock Text="{StaticResource TeamInfoButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
                         </StackPanel>
                     </HyperlinkButton>
                     <!-- Refresh Button -->
-                    <HyperlinkButton Grid.Column="1" x:Name="btnRefresh" Command="{x:Bind drvm.RefreshCommand}" Margin="0,0,0,0" >
+                    <HyperlinkButton Grid.Column="1" x:Name="btnRefresh" Command="{x:Bind drvm.RefreshCommand}" Style="{StaticResource HeaderHyperlinkButton}" Margin="0,0,0,0" >
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{StaticResource RefreshButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
                             <TextBlock Text="{StaticResource RefreshButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />

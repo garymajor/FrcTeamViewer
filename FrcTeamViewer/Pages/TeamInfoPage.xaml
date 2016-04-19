@@ -78,21 +78,21 @@
                         <ColumnDefinition Width="130" /> <!-- reverse sort button -->
                     </Grid.ColumnDefinitions>
                     <!-- Change Team Button -->
-                    <HyperlinkButton Grid.Column="0" Command="{x:Bind tivm.ChangeSettingsCommand}" CommandParameter="{Binding ElementName=pageTeamInfoPage}" Margin="0,0,0,0">
+                    <HyperlinkButton Grid.Column="0" Command="{x:Bind tivm.ChangeSettingsCommand}" CommandParameter="{Binding ElementName=pageTeamInfoPage}" Style="{StaticResource HeaderHyperlinkButton}" Margin="0,0,0,0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{StaticResource TeamInfoButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
                             <TextBlock Text="{StaticResource ChangeTeamButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
                         </StackPanel>
                     </HyperlinkButton>
                     <!-- Reverse Sort Button -->
-                    <HyperlinkButton Grid.Column="1" x:Name="btnSortList" Command="{x:Bind tivm.SortListCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Margin="0,0,0,0" >
+                    <HyperlinkButton Grid.Column="1" x:Name="btnSortList" Command="{x:Bind tivm.SortListCommand}" Style="{StaticResource HeaderHyperlinkButton}" Margin="0,0,0,0" >
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{StaticResource SortButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
                             <TextBlock Text="{StaticResource SortButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
                         </StackPanel>
                     </HyperlinkButton>
                     <!-- District Ranking Button -->
-                    <HyperlinkButton Grid.Column="2" Command="{x:Bind tivm.ShowDistrictRankingCommand}" Visibility="{x:Bind tivm.IsTeamInDistrict, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,0,0,0">
+                    <HyperlinkButton Grid.Column="2" Command="{x:Bind tivm.ShowDistrictRankingCommand}" Visibility="{x:Bind tivm.IsTeamInDistrict, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource HeaderHyperlinkButton}" Margin="0,0,0,0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{StaticResource DistrictRankingButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
                             <TextBlock Text="{StaticResource DistrictRankingButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />

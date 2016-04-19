@@ -56,4 +56,12 @@
         <Setter Property="Background" Value="{StaticResource FirstBlueColor}" />
     </Style>
 
+    <Style TargetType="HyperlinkButton" x:Key="HeaderHyperlinkButton">
+        <Setter Property="Foreground" Value="{StaticResource FirstRedColor}" />
+    </Style>
+    
+    <Style TargetType="HyperlinkButton" x:Key="BodyHyperlinkButton">
+        <Setter Property="Foreground" Value="{StaticResource FirstBlueColor}" />
+    </Style>
+
 </ResourceDictionary>

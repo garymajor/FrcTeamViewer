@@ -52,12 +52,12 @@
                         <ColumnDefinition Width="80" />  <!-- next button -->
                     </Grid.ColumnDefinitions>
                     <!-- Change Event Button -->
-                    <HyperlinkButton Grid.Column="0" x:Name="btnChangeEvent" Command="{x:Bind etvm.ChangeEventCommand}" Margin="0,0,0,0" >
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{StaticResource ChangeEventButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
-                        <TextBlock Text="{StaticResource ChangeEventButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
-                    </StackPanel>
-                </HyperlinkButton>
+                    <HyperlinkButton Grid.Column="0" x:Name="btnChangeEvent" Command="{x:Bind etvm.ChangeEventCommand}" Style="{StaticResource HeaderHyperlinkButton}" Margin="0,0,0,0" >
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{StaticResource ChangeEventButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
+                            <TextBlock Text="{StaticResource ChangeEventButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
+                        </StackPanel>
+                    </HyperlinkButton>
                     <!-- List buttons go here... -->
                 </Grid>
                 <TextBlock x:Name="txtEventName" Text="{Binding EventData.Result.name}" Style="{StaticResource TitleTextBlockStyle}" Margin="0,0,0,0" Visibility="{Binding EventData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
