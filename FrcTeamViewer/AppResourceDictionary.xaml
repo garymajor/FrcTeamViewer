@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:FrcTeamViewer">
+    xmlns:local="using:FrcTeamViewer"
+    xmlns:pages="using:FrcTeamViewer.Pages">
 
     <!-- Change Event Button Static Resources -->
     <x:String x:Key="ChangeEventButtonIcon">&#xE787;</x:String>
@@ -45,8 +46,8 @@
     <x:String x:Key="TeamMatchesButtonText">Team Matches</x:String>
 
     <!-- Alliance Background/Foreground Colors (for matches, etc.) -->
-    <Color x:Key="FirstRedColor">#ed1c24</Color>
-    <Color x:Key="FirstBlueColor">#009cd7</Color>
+    <SolidColorBrush x:Key="FirstRedColor">#ed1c24</SolidColorBrush>
+    <SolidColorBrush x:Key="FirstBlueColor">#009cd7</SolidColorBrush>
 
     <Style TargetType="Grid" x:Key="RedAlliance">
         <Setter Property="Background" Value="{StaticResource FirstRedColor}" />

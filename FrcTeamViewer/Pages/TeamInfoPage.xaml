@@ -22,40 +22,35 @@
                 </StackPanel>
                 <VariableSizedWrapGrid Orientation="Horizontal">
                     <!-- Event Matches Button -->
-                    <HyperlinkButton x:Name="btnEventMatches" Command="{Binding ElementName=listTeamEvents, Path=DataContext.ShowEventMatchesCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Margin="3,2,3,0" >
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{StaticResource EventMatchesButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
-                            <TextBlock Text="{StaticResource EventMatchesButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
-                        </StackPanel>
-                    </HyperlinkButton>
+                    <local:IconHyperlinkButton x:Name="btnEventMatches" 
+                                               IconContent="{StaticResource EventMatchesButtonIcon}" 
+                                               ButtonContent="{StaticResource EventMatchesButtonText}" 
+                                               Command="{Binding ElementName=listTeamEvents, Path=DataContext.ShowEventMatchesCommand}"
+                                               CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Margin="0,0,2,0" />
                     <!-- Team Matches Button-->
-                    <HyperlinkButton x:Name="btnTeamMatches" Command="{Binding ElementName=listTeamEvents, Path=DataContext.ShowTeamMatchesCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Margin="3,2,3,0" >
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{StaticResource TeamMatchesButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
-                            <TextBlock Text="{StaticResource TeamMatchesButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
-                        </StackPanel>
-                    </HyperlinkButton>
+                    <local:IconHyperlinkButton x:Name="btnTeamMatches" 
+                                               IconContent="{StaticResource TeamMatchesButtonIcon}" 
+                                               ButtonContent="{StaticResource TeamMatchesButtonText}" 
+                                               Command="{Binding ElementName=listTeamEvents, Path=DataContext.ShowTeamMatchesCommand}"
+                                               CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Margin="2,0,2,0" />
                     <!-- Event Teams Button-->
-                    <HyperlinkButton x:Name="btnEventTeams" Command="{Binding ElementName=listTeamEvents, Path=DataContext.ShowEventTeamsCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Margin="3,2,3,0" >
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{StaticResource EventTeamsButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
-                            <TextBlock Text="{StaticResource EventTeamsButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
-                        </StackPanel>
-                    </HyperlinkButton>
+                    <local:IconHyperlinkButton x:Name="btnEventTeams" 
+                                               IconContent="{StaticResource EventTeamsButtonIcon}" 
+                                               ButtonContent="{StaticResource EventTeamsButtonText}" 
+                                               Command="{Binding ElementName=listTeamEvents, Path=DataContext.ShowEventTeamsCommand}"
+                                               CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Margin="2,0,2,0" />
                     <!-- Event Ranking Button-->
-                    <HyperlinkButton x:Name="btnEventRanking" Command="{Binding ElementName=listTeamEvents, Path=DataContext.ShowEventRankingCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Margin="3,2,3,0" >
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{StaticResource RankingListButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
-                            <TextBlock Text="{StaticResource RankingListButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
-                        </StackPanel>
-                    </HyperlinkButton>
+                    <local:IconHyperlinkButton x:Name="btnEventRanking" 
+                                               IconContent="{StaticResource RankingListButtonIcon}" 
+                                               ButtonContent="{StaticResource RankingListButtonText}" 
+                                               Command="{Binding ElementName=listTeamEvents, Path=DataContext.ShowEventRankingCommand}"
+                                               CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Margin="2,0,2,0" />
                     <!-- Event Awards Button-->
-                    <HyperlinkButton x:Name="btnEventAwards" Command="{Binding ElementName=listTeamEvents, Path=DataContext.ShowEventAwardsCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Margin="3,2,3,0" >
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{StaticResource EventAwardsButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
-                            <TextBlock Text="{StaticResource EventAwardsButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
-                        </StackPanel>
-                    </HyperlinkButton>
+                    <local:IconHyperlinkButton x:Name="btnEventAwards" 
+                                               IconContent="{StaticResource EventAwardsButtonIcon}" 
+                                               ButtonContent="{StaticResource EventAwardsButtonText}" 
+                                               Command="{Binding ElementName=listTeamEvents, Path=DataContext.ShowEventAwardsCommand}"
+                                               CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Margin="2,0,0,0" />
                 </VariableSizedWrapGrid>
             </StackPanel>
         </DataTemplate>
@@ -78,26 +73,21 @@
                         <ColumnDefinition Width="130" /> <!-- reverse sort button -->
                     </Grid.ColumnDefinitions>
                     <!-- Change Team Button -->
-                    <HyperlinkButton Grid.Column="0" Command="{x:Bind tivm.ChangeSettingsCommand}" CommandParameter="{Binding ElementName=pageTeamInfoPage}" Style="{StaticResource HeaderHyperlinkButton}" Margin="0,0,0,0">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{StaticResource TeamInfoButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
-                            <TextBlock Text="{StaticResource ChangeTeamButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
-                        </StackPanel>
-                    </HyperlinkButton>
+                    <local:IconHyperlinkButton Grid.Column="0" x:Name="btnChangeSettings" 
+                                               IconContent="{StaticResource TeamInfoButtonIcon}" 
+                                               ButtonContent="{StaticResource ChangeTeamButtonText}" 
+                                               Command="{x:Bind tivm.ChangeSettingsCommand}" />
                     <!-- Reverse Sort Button -->
-                    <HyperlinkButton Grid.Column="1" x:Name="btnSortList" Command="{x:Bind tivm.SortListCommand}" Style="{StaticResource HeaderHyperlinkButton}" Margin="0,0,0,0" >
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{StaticResource SortButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
-                            <TextBlock Text="{StaticResource SortButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
-                        </StackPanel>
-                    </HyperlinkButton>
+                    <local:IconHyperlinkButton Grid.Column="1" x:Name="btnSortList" 
+                                               IconContent="{StaticResource SortButtonIcon}" 
+                                               ButtonContent="{StaticResource SortButtonText}" 
+                                               Command="{x:Bind tivm.SortListCommand}" />
                     <!-- District Ranking Button -->
-                    <HyperlinkButton Grid.Column="2" Command="{x:Bind tivm.ShowDistrictRankingCommand}" Visibility="{x:Bind tivm.IsTeamInDistrict, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource HeaderHyperlinkButton}" Margin="0,0,0,0">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{StaticResource DistrictRankingButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
-                            <TextBlock Text="{StaticResource DistrictRankingButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
-                        </StackPanel>
-                    </HyperlinkButton>
+                    <local:IconHyperlinkButton Grid.Column="2" x:Name="btnDistrictRanking" 
+                                               IconContent="{StaticResource DistrictRankingButtonIcon}" 
+                                               ButtonContent="{StaticResource DistrictRankingButtonText}" 
+                                               Command="{x:Bind tivm.ShowDistrictRankingCommand}"
+                                               Visibility="{x:Bind tivm.IsTeamInDistrict, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 </Grid>
                 <StackPanel Orientation="Horizontal" Visibility="{Binding TeamData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <TextBlock Text ="Team" Style="{StaticResource TitleTextBlockStyle}" Margin="0,0,5,0" />

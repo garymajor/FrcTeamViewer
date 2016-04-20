@@ -251,7 +251,7 @@ namespace FrcTeamViewer.Presentation
         /// <param name="p">The Page</param>
         private void ChangeSettings(object p)
         {
-            ((TeamInfoPage)p).Frame.Navigate(typeof(SettingsPage));
+            CurrentPage.Frame.Navigate(typeof(SettingsPage));
         }
 
         /// <summary>
@@ -269,7 +269,7 @@ namespace FrcTeamViewer.Presentation
         /// <param name="p"></param>
         private void ShowEventAwards(object p)
         {
-            var competitionevent = ((EventInformation)((HyperlinkButton)p).DataContext).key;
+            var competitionevent = ((EventInformation)((IconHyperlinkButton)p).DataContext).key;
             svm.EventKey = competitionevent;
             CurrentPage.Frame.Navigate(typeof(EventAwardsPage));
         }
@@ -280,7 +280,7 @@ namespace FrcTeamViewer.Presentation
         /// <param name="p"></param>
         private void ShowEventMatches(object p)
         {
-            var competitionevent = ((EventInformation)((HyperlinkButton)p).DataContext).key;
+            var competitionevent = ((EventInformation)((IconHyperlinkButton)p).DataContext).key;
             svm.EventKey = competitionevent;
             CurrentPage.Frame.Navigate(typeof(EventMatchPage));
         }
@@ -292,7 +292,7 @@ namespace FrcTeamViewer.Presentation
         private void ShowEventTeams(object p)
         {
             // Store the eventkey from the context of the clicked button...
-            var competitionevent = ((EventInformation)((HyperlinkButton)p).DataContext).key;
+            var competitionevent = ((EventInformation)((IconHyperlinkButton)p).DataContext).key;
             svm.EventKey = competitionevent;
             CurrentPage.Frame.Navigate(typeof(EventTeamsPage));
         }
@@ -304,7 +304,7 @@ namespace FrcTeamViewer.Presentation
         private void ShowEventRanking(object p)
         {
             // Store the eventkey from the context of the clicked button...
-            var competitionevent = ((EventInformation)((HyperlinkButton)p).DataContext).key;
+            var competitionevent = ((EventInformation)((IconHyperlinkButton)p).DataContext).key;
             svm.EventKey = competitionevent;
             CurrentPage.Frame.Navigate(typeof(EventRankingPage));
         }
@@ -316,7 +316,7 @@ namespace FrcTeamViewer.Presentation
         private void ShowTeamMatches(object p)
         {
             // Store the eventkey from the context of the clicked button...
-            var competitionevent = ((EventInformation)((HyperlinkButton)p).DataContext).key;
+            var competitionevent = ((EventInformation)((IconHyperlinkButton)p).DataContext).key;
             svm.EventKey = competitionevent;
             CurrentPage.Frame.Navigate(typeof(TeamMatchPage));
         }

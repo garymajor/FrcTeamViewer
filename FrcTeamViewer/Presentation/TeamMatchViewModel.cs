@@ -92,11 +92,11 @@ namespace FrcTeamViewer.Presentation
         /// <summary>
         /// Refresh List Command
         /// </summary>
-        public ICommand RefreshListCommand
+        public ICommand RefreshCommand
         {
             get
             {
-                return refreshListCommand;
+                return refreshCommand;
             }
         }
 
@@ -118,7 +118,7 @@ namespace FrcTeamViewer.Presentation
         {
             changeEventCommand = new DelegateCommand(ChangeEvent);
             changeTeamCommand = new DelegateCommand(ChangeTeam);
-            refreshListCommand = new DelegateCommand(RefreshList);
+            refreshCommand = new DelegateCommand(RefreshList);
             sortListCommand = new DelegateCommand(SortList);
             svm = new SettingsViewModel();
             apiClient = new ApiClient();
@@ -139,7 +139,7 @@ namespace FrcTeamViewer.Presentation
         /// <summary>
         /// internal refresh list command to use as a DelegateCommand.
         /// </summary>
-        private ICommand refreshListCommand;
+        private ICommand refreshCommand;
 
         /// <summary>
         /// Internal sort list command to use as a DelegateCommand.

@@ -43,19 +43,15 @@
                         <ColumnDefinition Width="80" />  <!-- refresh button -->
                     </Grid.ColumnDefinitions>
                     <!-- Change Event Button -->
-                    <HyperlinkButton Grid.Column="0" x:Name="btnChangeEvent" Command="{x:Bind eavm.ChangeEventCommand}" Style="{StaticResource HeaderHyperlinkButton}" Margin="0,0,0,0" >
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{StaticResource ChangeEventButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
-                            <TextBlock Text="{StaticResource ChangeEventButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
-                        </StackPanel>
-                    </HyperlinkButton>
+                    <local:IconHyperlinkButton Grid.Column="0" x:Name="btnChangeEvent" 
+                                               IconContent="{StaticResource ChangeEventButtonIcon}" 
+                                               ButtonContent="{StaticResource ChangeEventButtonText}" 
+                                               Command="{x:Bind eavm.ChangeEventCommand}" />
                     <!-- Refresh Button -->
-                    <HyperlinkButton Grid.Column="1" x:Name="btnRefresh" Command="{x:Bind eavm.RefreshCommand}" Visibility="{Binding EventAwardData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource HeaderHyperlinkButton}" Margin="0,0,0,0" >
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{StaticResource RefreshButtonIcon}" FontFamily="Segoe MDL2 Assets" FontSize="20" />
-                            <TextBlock Text="{StaticResource RefreshButtonText}" Style="{StaticResource BodyTextBlockStyle}" Margin="2,0,0,0" />
-                        </StackPanel>
-                    </HyperlinkButton>
+                    <local:IconHyperlinkButton Grid.Column="1" x:Name="btnRefresh" 
+                                               IconContent="{StaticResource RefreshButtonIcon}" 
+                                               ButtonContent="{StaticResource RefreshButtonText}" 
+                                               Command="{x:Bind eavm.RefreshCommand}" />
                 </Grid>
                 <TextBlock x:Name="txtEventName" Text="{Binding EventData.Result.name}" Style="{StaticResource TitleTextBlockStyle}" Margin="0,0,0,0" Visibility="{Binding EventData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <TextBlock x:Name="txtEventLocation" Text ="{Binding EventData.Result.location}" Style="{StaticResource BodyTextBlockStyle}" Visibility="{Binding EventData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
