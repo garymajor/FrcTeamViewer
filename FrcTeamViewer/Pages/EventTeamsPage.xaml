@@ -56,7 +56,11 @@
                                                IconContent="{StaticResource ChangeEventButtonIcon}" 
                                                ButtonContent="{StaticResource ChangeEventButtonText}" 
                                                Command="{x:Bind etvm.ChangeEventCommand}" />
-                    <!-- List buttons go here... -->
+                    <!-- Refresh Button -->
+                    <local:IconHyperlinkButton Grid.Column="1" x:Name="btnRefresh" 
+                                               IconContent="{StaticResource RefreshButtonIcon}" 
+                                               ButtonContent="{StaticResource RefreshButtonText}" 
+                                               Command="{x:Bind etvm.RefreshCommand}" />
                 </Grid>
                 <TextBlock x:Name="txtEventName" Text="{Binding EventData.Result.name}" Style="{StaticResource TitleTextBlockStyle}" Margin="0,0,0,0" Visibility="{Binding EventData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <TextBlock x:Name="txtEventLocation" Text ="{Binding EventData.Result.location}" Style="{StaticResource BodyTextBlockStyle}" Visibility="{Binding EventData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />

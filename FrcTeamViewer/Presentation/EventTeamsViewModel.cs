@@ -12,7 +12,22 @@ namespace FrcTeamViewer.Presentation
         /// The EventInformation object that will hold the event information, using the given eventkey
         /// </summary>
         public NotifyTaskCompletion<EventInformation> EventData { get; private set; }
-        public NotifyTaskCompletion<ObservableCollection<TeamInformation>> EventTeamData { get; private set; }
+        
+        /// <summary>
+        /// The TeamInformation object that will hold the event team list, using the given eventkey
+        /// </summary>
+        public NotifyTaskCompletion<ObservableCollection<TeamInformation>> EventTeamData
+        {
+            get
+            {
+                return eventTeamData;
+            }
+            private set
+            {
+                eventTeamData = value;
+                OnPropertyChanged("EventTeamData");
+            }
+        }
 
         /// <summary>
         /// Width of the page.
@@ -36,14 +51,32 @@ namespace FrcTeamViewer.Presentation
         /// </summary>
         public EventTeamsViewModel()
         {
+            // reset this because we overrode it
+            refreshCommand = new DelegateCommand(RefreshList);
+
+            // Load the data
             EventData = new NotifyTaskCompletion<EventInformation>(LoadEventData(svm.EventKey));
             EventTeamData = new NotifyTaskCompletion<ObservableCollection<TeamInformation>>(LoadEventTeamData(svm.EventKey));
         }
 
         /// <summary>
+        /// Internal event team data
+        /// </summary>
+        private NotifyTaskCompletion<ObservableCollection<TeamInformation>> eventTeamData { get; set; }
+
+        /// <summary>
         /// Internal Page Width member
         /// </summary>
         private double pageWidth { get; set; }
+
+        /// <summary>
+        /// Code for the Refresh Command
+        /// </summary>
+        /// <param name="p"></param>
+        protected override void RefreshList(object p)
+        {
+            EventTeamData = new NotifyTaskCompletion<ObservableCollection<TeamInformation>>(LoadEventTeamData(svm.EventKey));
+        }
 
         /// <summary>
         /// Function to load event data into the View Model.
