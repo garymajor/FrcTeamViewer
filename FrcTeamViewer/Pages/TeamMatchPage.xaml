@@ -140,7 +140,7 @@
 
                 <!-- Team Match Data Results -->
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding TeamMatchData.Result.Count}" Style="{StaticResource BaseTextBlockStyle}" Visibility="{Binding EventTeamData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="5,10,0,0" />
+                    <TextBlock Text="{Binding TeamMatchData.Result.Count}" Style="{StaticResource BaseTextBlockStyle}" Visibility="{Binding TeamMatchData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="5,10,0,0" />
                     <TextBlock Text="matches for team" Style="{StaticResource BaseTextBlockStyle}" Visibility="{Binding TeamMatchData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="5,10,0,0"/>
                     <TextBlock Text="{x:Bind tmvm.CurrentTeamNumber}" Style="{StaticResource BaseTextBlockStyle}" Visibility="{Binding TeamMatchData.IsSuccessfullyCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="5,10,0,0"/>
                 </StackPanel>
