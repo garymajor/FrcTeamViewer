@@ -118,7 +118,7 @@
       <DependentUpon>EventAwardsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Converters\BooleanToVisibilityConverter.cs" />
-    <Compile Include="Presentation\DelegateCommand.cs" />
+    <Compile Include="Presentation\BaseClasses\DelegateCommand.cs" />
     <Compile Include="Presentation\DistrictRankingViewModel.cs" />
     <Compile Include="Pages\IconHyperlinkButton.xaml.cs">
       <DependentUpon>IconHyperlinkButton.xaml</DependentUpon>
@@ -127,7 +127,7 @@
     <Compile Include="Presentation\EventMatchViewModel.cs" />
     <Compile Include="Presentation\EventRankingViewModel.cs" />
     <Compile Include="Presentation\EventAwardsViewModel.cs" />
-    <Compile Include="Presentation\NotifyTaskCompletion.cs" />
+    <Compile Include="Presentation\BaseClasses\NotifyTaskCompletion.cs" />
     <Compile Include="Presentation\SettingsViewModel.cs" />
     <Compile Include="Presentation\EventTeamsViewModel.cs" />
     <Compile Include="Pages\Converters\WidthConverter.cs" />
