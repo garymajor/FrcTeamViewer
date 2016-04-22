@@ -7,10 +7,11 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Xaml.Controls;
+using System.ComponentModel;
 
 namespace FrcTeamViewer.Presentation
 {
-    public class DistrictRankingViewModel : NotifyPropertyChanged
+    public class DistrictRankingViewModel : ViewModelBase
     {
         /// <summary>
         /// The district name
@@ -34,11 +35,6 @@ namespace FrcTeamViewer.Presentation
         }
 
         /// <summary>
-        /// The current page (set in the code behind constructor).
-        /// </summary>
-        public Page CurrentPage { get; set; }
-
-        /// <summary>
         /// Width of the page.
         /// </summary>
         //TODO: figure out how to do this through MVVM, rather than code-behind (currently set through the Page.SizeChanged event in code-behind)
@@ -56,66 +52,17 @@ namespace FrcTeamViewer.Presentation
         }
 
         /// <summary>
-        /// Change Team Command
-        /// </summary>
-        public ICommand ChangeTeamCommand
-        {
-            get
-            {
-                return changeTeamCommand;
-            }
-        }
-
-        /// <summary>
-        /// Refresh Command
-        /// </summary>
-        public ICommand RefreshCommand
-        {
-            get
-            {
-                return refreshCommand;
-            }
-        }
-
-        /// <summary>
-        /// View Team Command
-        /// </summary>
-        public ICommand ViewTeamCommand
-        {
-            get
-            {
-                return viewTeamCommand;
-            }
-        }
-
-        /// <summary>
         /// Constructor - Note: Initiates async loading of data for the view
         /// </summary>
         public DistrictRankingViewModel()
         {
-            changeTeamCommand = new DelegateCommand(ChangeTeam);
+            // reset this because we overrode it.
             refreshCommand = new DelegateCommand(RefreshList);
-            viewTeamCommand = new DelegateCommand(ViewTeam);
-            svm = new SettingsViewModel();
-            apiClient = new ApiClient(svm.LocalStorage);
+
+            // Load our data
             DistrictName = new NotifyTaskCompletion<string>(LoadDistrictName(svm.DistrictKey));
             DistrictRankingData = new NotifyTaskCompletion<ObservableCollection<DistrictRankingInformation>>(LoadDistrictRankingData(svm.DistrictKey));
         }
-
-        /// <summary>
-        /// Internal change team command to use as a DelegateCommand.
-        /// </summary>
-        private ICommand changeTeamCommand;
-
-        /// <summary>
-        /// Internal refresh command to use as a DelegateCommand.
-        /// </summary>
-        private ICommand refreshCommand;
-
-        /// <summary>
-        /// Internal view team command to use as a DelegateCommand.
-        /// </summary>
-        private ICommand viewTeamCommand;
 
         /// <summary>
         /// Internal event ranking data
@@ -123,46 +70,17 @@ namespace FrcTeamViewer.Presentation
         private NotifyTaskCompletion<ObservableCollection<DistrictRankingInformation>> districtRankingData { get; set; }
 
         /// <summary>
-        /// Internal copy of the app settings
-        /// </summary>
-        private SettingsViewModel svm { get; set; }
-
-        /// <summary>
-        /// Internal TBA API Client
-        /// </summary>
-        private ApiClient apiClient { get; set; }
-
-        /// <summary>
         /// Internal Page Width member
         /// </summary>
         private double pageWidth { get; set; }
 
         /// <summary>
-        /// Code for the Change Team Command
-        /// </summary>
-        /// <param name="p">The object passed from the view</param>
-        private void ChangeTeam(object p)
-        {
-            svm.TeamNumber = (string)p;
-            CurrentPage.Frame.Navigate(typeof(TeamInfoPage));
-        }
-
-        /// <summary>
         /// Code for the Refresh Command
         /// </summary>
         /// <param name="p"></param>
-        private void RefreshList(object p)
+        protected override void RefreshList(object p)
         {
             DistrictRankingData = new NotifyTaskCompletion<ObservableCollection<DistrictRankingInformation>>(LoadDistrictRankingData(svm.DistrictKey));
-        }
-
-        /// <summary>
-        /// Code for the View Team Command
-        /// </summary>
-        /// <param name="p">The object passed from the view</param>
-        private void ViewTeam(object p)
-        {
-            CurrentPage.Frame.Navigate(typeof(TeamInfoPage));
         }
 
         /// <summary>

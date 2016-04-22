@@ -119,6 +119,7 @@
     </Compile>
     <Compile Include="Pages\Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Presentation\BaseClasses\DelegateCommand.cs" />
+    <Compile Include="Presentation\BaseClasses\ViewModelBase.cs" />
     <Compile Include="Presentation\DistrictRankingViewModel.cs" />
     <Compile Include="Pages\IconHyperlinkButton.xaml.cs">
       <DependentUpon>IconHyperlinkButton.xaml</DependentUpon>
