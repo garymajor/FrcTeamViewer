@@ -1,24 +1,18 @@
-﻿using FrcTeamViewer.Pages;
-using Intense.Presentation;
-using TbaApiClient;
-using TbaApiClient.DataModel;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Input;
-using Windows.UI.Xaml.Controls;
+using TbaApiClient.DataModel;
 
 namespace FrcTeamViewer.Presentation
 {
-    public class EventTeamsViewModel : NotifyPropertyChanged
+    public class EventTeamsViewModel : ViewModelBase
     {
         /// <summary>
         /// The EventInformation object that will hold the event information, using the given eventkey
         /// </summary>
         public NotifyTaskCompletion<EventInformation> EventData { get; private set; }
         public NotifyTaskCompletion<ObservableCollection<TeamInformation>> EventTeamData { get; private set; }
-        public Page CurrentPage { get; set; }
 
         /// <summary>
         /// Width of the page.
@@ -37,52 +31,19 @@ namespace FrcTeamViewer.Presentation
             }
         }
 
-        private ICommand changeEventCommand;
-        private ICommand changeTeamCommand;
-        private SettingsViewModel svm { get; set; }
-        private ApiClient apiClient { get; set; }
-        private double pageWidth { get; set; }
-
-        public ICommand ChangeEventCommand
-        {
-            get
-            {
-                return changeEventCommand;
-            }
-        }
-
-        public ICommand ChangeTeamCommand
-        {
-            get
-            {
-                return changeTeamCommand;
-            }
-        }
-
         /// <summary>
         /// Constructor - pulls the team to look up from the local settings
         /// </summary>
         public EventTeamsViewModel()
         {
-            changeEventCommand = new DelegateCommand(ChangeEvent);
-            changeTeamCommand = new DelegateCommand(ChangeTeam);
-            svm = new SettingsViewModel();
-            apiClient = new ApiClient(svm.LocalStorage);
             EventData = new NotifyTaskCompletion<EventInformation>(LoadEventData(svm.EventKey));
             EventTeamData = new NotifyTaskCompletion<ObservableCollection<TeamInformation>>(LoadEventTeamData(svm.EventKey));
         }
 
-        private void ChangeEvent(object p)
-        {
-            CurrentPage.Frame.Navigate(typeof(TeamInfoPage));
-        }
-
-        private void ChangeTeam(object p)
-        {
-            var competitionteam = ((TeamInformation)((HyperlinkButton)p).DataContext).team_number;
-            svm.TeamNumber = competitionteam;
-            CurrentPage.Frame.Navigate(typeof(TeamInfoPage));
-        }
+        /// <summary>
+        /// Internal Page Width member
+        /// </summary>
+        private double pageWidth { get; set; }
 
         /// <summary>
         /// Function to load event data into the View Model.

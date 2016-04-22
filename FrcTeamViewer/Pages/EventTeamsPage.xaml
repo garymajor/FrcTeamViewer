@@ -26,7 +26,7 @@
                         Width="{Binding ElementName=pageEventTeamsPage, Path=DataContext.PageWidth, Converter={StaticResource WidthConverter}, ConverterParameter=40}"
                         MinWidth="{Binding ElementName=pageEventTeamsPage, Path=DataContext.PageWidth, Converter={StaticResource WidthConverter}, ConverterParameter=40}" />
                 </Grid.ColumnDefinitions>
-                <HyperlinkButton Grid.Column="0" Command="{Binding ElementName=listEventTeams, Path=DataContext.ChangeTeamCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
+                <HyperlinkButton Grid.Column="0" Command="{Binding ElementName=listEventTeams, Path=DataContext.ChangeTeamCommand}" CommandParameter="{Binding team_number}"
                                  VerticalAlignment="Top">
                     <TextBlock Text="{Binding team_number}" VerticalAlignment="Top" TextAlignment="Left" Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0"/>
                 </HyperlinkButton>
