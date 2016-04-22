@@ -125,6 +125,17 @@ namespace FrcTeamViewer.Presentation
             }
         }
 
+        /// <summary>
+        /// Application Storage - where we can put the API cache.
+        /// </summary>
+        public StorageFolder LocalStorage
+        {
+            get
+            {
+                return localStorage;
+            }
+        }
+
         private string teamNumber { get; set; }
         private string eventKey { get; set; }
         private string districtKey { get; set; }
@@ -133,6 +144,7 @@ namespace FrcTeamViewer.Presentation
         private int eventMatchSortOrder { get; set; }
         private bool darkMode { get; set; }
         private ApplicationDataContainer localSettings;
+        private StorageFolder localStorage { get; set; }
         private ICommand viewTeamInfoCommand;
         public Page CurrentPage { get; set; } // gets set by the Page when it initializes
 
@@ -151,6 +163,7 @@ namespace FrcTeamViewer.Presentation
         {
             viewTeamInfoCommand = new DelegateCommand(ViewTeamInfo);
             localSettings = ApplicationData.Current.LocalSettings;
+            localStorage = ApplicationData.Current.LocalFolder;
             LoadState();
             SetShellTheme();
         }

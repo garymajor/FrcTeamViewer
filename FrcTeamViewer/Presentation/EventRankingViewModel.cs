@@ -97,7 +97,7 @@ namespace FrcTeamViewer.Presentation
             changeTeamCommand = new DelegateCommand(ChangeTeam);
             refreshCommand = new DelegateCommand(RefreshList);
             svm = new SettingsViewModel();
-            apiClient = new ApiClient();
+            apiClient = new ApiClient(svm.LocalStorage);
             EventData = new NotifyTaskCompletion<EventInformation>(LoadEventData(svm.EventKey));
             EventRankingData = new NotifyTaskCompletion<ObservableCollection<EventRankingInformation>>(LoadEventRankingData(svm.EventKey));
         }

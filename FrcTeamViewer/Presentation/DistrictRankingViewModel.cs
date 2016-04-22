@@ -97,7 +97,7 @@ namespace FrcTeamViewer.Presentation
             refreshCommand = new DelegateCommand(RefreshList);
             viewTeamCommand = new DelegateCommand(ViewTeam);
             svm = new SettingsViewModel();
-            apiClient = new ApiClient();
+            apiClient = new ApiClient(svm.LocalStorage);
             DistrictName = new NotifyTaskCompletion<string>(LoadDistrictName(svm.DistrictKey));
             DistrictRankingData = new NotifyTaskCompletion<ObservableCollection<DistrictRankingInformation>>(LoadDistrictRankingData(svm.DistrictKey));
         }

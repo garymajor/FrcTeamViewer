@@ -229,7 +229,7 @@ namespace FrcTeamViewer.Presentation
             showTeamMatchesCommand = new DelegateCommand(ShowTeamMatches);
             sortListCommand = new DelegateCommand(SortList);
             svm = new SettingsViewModel();
-            apiClient = new ApiClient();
+            apiClient = new ApiClient(svm.LocalStorage);
             TeamData = new NotifyTaskCompletion<TeamInformation>(LoadTeamData(svm.TeamNumber));
             TeamEventData = new NotifyTaskCompletion<ObservableCollection<EventInformation>>(LoadTeamEventData(svm.TeamNumber));
             DistrictKey = new NotifyTaskCompletion<string>(LoadDistrictKey(svm.TeamNumber));

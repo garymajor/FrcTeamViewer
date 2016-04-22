@@ -121,7 +121,7 @@ namespace FrcTeamViewer.Presentation
             refreshCommand = new DelegateCommand(RefreshList);
             sortListCommand = new DelegateCommand(SortList);
             svm = new SettingsViewModel();
-            apiClient = new ApiClient();
+            apiClient = new ApiClient(svm.LocalStorage);
             EventData = new NotifyTaskCompletion<EventInformation>(LoadEventData(svm.EventKey));
             TeamMatchData = new NotifyTaskCompletion<ObservableCollection<MatchInformation>>(LoadEventMatchData(svm.TeamNumber, svm.EventKey));
         }
