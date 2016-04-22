@@ -11,7 +11,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace FrcTeamViewer.Presentation
 {
-    public class TeamMatchViewModel : NotifyPropertyChanged
+    public class TeamMatchViewModel : ViewModelBase
     {
         /// <summary>
         /// The EventInformation object that will hold the event information, using the given eventkey
@@ -33,11 +33,6 @@ namespace FrcTeamViewer.Presentation
                 OnPropertyChanged("TeamMatchData");
             }
         }
-
-        /// <summary>
-        /// The current page (set in the code behind constructor).
-        /// </summary>
-        public Page CurrentPage { get; set; }
 
         /// <summary>
         /// The current team number.
@@ -68,39 +63,6 @@ namespace FrcTeamViewer.Presentation
         }
 
         /// <summary>
-        /// Change Event Command
-        /// </summary>
-        public ICommand ChangeEventCommand
-        {
-            get
-            {
-                return changeEventCommand;
-            }
-        }
-
-        /// <summary>
-        /// Change Team Command
-        /// </summary>
-        public ICommand ChangeTeamCommand
-        {
-            get
-            {
-                return changeTeamCommand;
-            }
-        }
-
-        /// <summary>
-        /// Refresh List Command
-        /// </summary>
-        public ICommand RefreshCommand
-        {
-            get
-            {
-                return refreshCommand;
-            }
-        }
-
-        /// <summary>
         /// Sort List Command
         /// </summary>
         public ICommand SortListCommand
@@ -116,30 +78,14 @@ namespace FrcTeamViewer.Presentation
         /// </summary>
         public TeamMatchViewModel()
         {
-            changeEventCommand = new DelegateCommand(ChangeEvent);
-            changeTeamCommand = new DelegateCommand(ChangeTeam);
+            // reset this because we overrode it
             refreshCommand = new DelegateCommand(RefreshList);
             sortListCommand = new DelegateCommand(SortList);
-            svm = new SettingsViewModel();
-            apiClient = new ApiClient(svm.LocalStorage);
+
+            // Load the data
             EventData = new NotifyTaskCompletion<EventInformation>(LoadEventData(svm.EventKey));
             TeamMatchData = new NotifyTaskCompletion<ObservableCollection<MatchInformation>>(LoadEventMatchData(svm.TeamNumber, svm.EventKey));
         }
-
-        /// <summary>
-        /// Internal change event command to use as a DelegateCommand.
-        /// </summary>
-        private ICommand changeEventCommand;
-
-        /// <summary>
-        /// Internal change team command to use as a DelegateCommand.
-        /// </summary>
-        private ICommand changeTeamCommand;
-
-        /// <summary>
-        /// internal refresh list command to use as a DelegateCommand.
-        /// </summary>
-        private ICommand refreshCommand;
 
         /// <summary>
         /// Internal sort list command to use as a DelegateCommand.
@@ -152,44 +98,15 @@ namespace FrcTeamViewer.Presentation
         private NotifyTaskCompletion<ObservableCollection<MatchInformation>> teamMatchData { get; set; }
 
         /// <summary>
-        /// Internal copy of the app settings
-        /// </summary>
-        private SettingsViewModel svm { get; set; }
-
-        /// <summary>
-        /// Internal TBA API client class
-        /// </summary>
-        private ApiClient apiClient { get; set; }
-
-        /// <summary>
         /// Internal Page Width member
         /// </summary>
         private double pageWidth { get; set; }
 
         /// <summary>
-        /// Code for the Change Event Command
-        /// </summary>
-        /// <param name="p">The object passed from the view</param>
-        private void ChangeEvent(object p)
-        {
-            CurrentPage.Frame.Navigate(typeof(TeamInfoPage));
-        }
-
-        /// <summary>
-        /// Code for the Change Team Command
-        /// </summary>
-        /// <param name="p">The object passed from the view</param>
-        private void ChangeTeam(object p)
-        {
-            svm.TeamNumber = (string)p;
-            CurrentPage.Frame.Navigate(typeof(TeamInfoPage));
-        }
-
-        /// <summary>
         /// Refresh List Command Execute
         /// </summary>
         /// <param name="p"></param>
-        private void RefreshList(object p)
+        protected override void RefreshList(object p)
         {
             TeamMatchData = new NotifyTaskCompletion<ObservableCollection<MatchInformation>>(LoadEventMatchData(svm.TeamNumber, svm.EventKey));
         }
