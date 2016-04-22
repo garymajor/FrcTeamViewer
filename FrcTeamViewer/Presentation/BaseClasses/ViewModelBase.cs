@@ -21,6 +21,17 @@ namespace FrcTeamViewer.Presentation
 
         #region public ICommand objects
         /// <summary>
+        /// Change Event Command
+        /// </summary>
+        public ICommand ChangeEventCommand
+        {
+            get
+            {
+                return changeEventCommand;
+            }
+        }
+
+        /// <summary>
         /// Change Team Command
         /// </summary>
         public ICommand ChangeTeamCommand
@@ -56,6 +67,7 @@ namespace FrcTeamViewer.Presentation
 
         public ViewModelBase()
         {
+            changeEventCommand = new DelegateCommand(ChangeEvent);
             changeTeamCommand = new DelegateCommand(ChangeTeam);
             refreshCommand = new DelegateCommand(RefreshList);
             viewTeamCommand = new DelegateCommand(ViewTeam);
@@ -75,6 +87,11 @@ namespace FrcTeamViewer.Presentation
 
         #region protected ICommand objects
         /// <summary>
+        /// Internal change event command to use as a DelegateCommand.
+        /// </summary>
+        protected ICommand changeEventCommand;
+
+        /// <summary>
         /// Internal change team command to use as a DelegateCommand.
         /// </summary>
         protected ICommand changeTeamCommand;
@@ -91,6 +108,15 @@ namespace FrcTeamViewer.Presentation
         #endregion
 
         #region virtual Command code
+        /// <summary>
+        /// Code for the Change Event Command
+        /// </summary>
+        /// <param name="p">The object passed from the view</param>
+        protected virtual void ChangeEvent(object p)
+        {
+            CurrentPage.Frame.Navigate(typeof(TeamInfoPage));
+        }
+
         /// <summary>
         /// Code for the Change Team Command
         /// </summary>

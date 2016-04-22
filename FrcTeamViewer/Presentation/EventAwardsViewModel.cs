@@ -11,7 +11,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace FrcTeamViewer.Presentation
 {
-    public class EventAwardsViewModel : NotifyPropertyChanged
+    public class EventAwardsViewModel : ViewModelBase
     {
         /// <summary>
         /// The EventInformation object that will hold the event information, using the given eventkey
@@ -35,11 +35,6 @@ namespace FrcTeamViewer.Presentation
         }
 
         /// <summary>
-        /// The current page (set in the code behind constructor).
-        /// </summary>
-        public Page CurrentPage { get; set; }
-
-        /// <summary>
         /// Width of the page.
         /// </summary>
         //TODO: figure out how to do this through MVVM, rather than code-behind (currently set through the Page.SizeChanged event in code-behind)
@@ -57,36 +52,14 @@ namespace FrcTeamViewer.Presentation
         }
 
         /// <summary>
-        /// Change Event Command
-        /// </summary>
-        public ICommand ChangeEventCommand
-        {
-            get
-            {
-                return changeEventCommand;
-            }
-        }
-
-        /// <summary>
-        /// Refresh Command
-        /// </summary>
-        public ICommand RefreshCommand
-        {
-            get
-            {
-                return refreshCommand;
-            }
-        }
-
-        /// <summary>
         /// Constructor - Note: Initiates async loading of data for the view
         /// </summary>
         public EventAwardsViewModel()
         {
-            changeEventCommand = new DelegateCommand(ChangeEvent);
+            // reset this since we overrode it.
             refreshCommand = new DelegateCommand(RefreshList);
-            svm = new SettingsViewModel();
-            apiClient = new ApiClient(svm.LocalStorage);
+
+            // Load the data
             EventData = new NotifyTaskCompletion<EventInformation>(LoadEventData(svm.EventKey));
             EventAwardData = new NotifyTaskCompletion<ObservableCollection<EventAwardInformation>>(LoadEventAwardData(svm.EventKey));
         }
@@ -97,44 +70,15 @@ namespace FrcTeamViewer.Presentation
         private NotifyTaskCompletion<ObservableCollection<EventAwardInformation>> eventAwardData { get; set; }
 
         /// <summary>
-        /// Internal change event command to use as a DelegateCommand.
-        /// </summary>
-        private ICommand changeEventCommand;
-
-        /// <summary>
-        /// Internal refresh command to use as a DelegateCommand.
-        /// </summary>
-        private ICommand refreshCommand;
-
-        /// <summary>
-        /// Internal copy of the app settings
-        /// </summary>
-        private SettingsViewModel svm { get; set; }
-
-        /// <summary>
-        /// Internal TBA API Client
-        /// </summary>
-        private ApiClient apiClient { get; set; }
-
-        /// <summary>
         /// Internal Page Width member
         /// </summary>
         private double pageWidth { get; set; }
 
         /// <summary>
-        /// Code for the Change Event Command
-        /// </summary>
-        /// <param name="p">The object passed from the view</param>
-        private void ChangeEvent(object p)
-        {
-            CurrentPage.Frame.Navigate(typeof(TeamInfoPage));
-        }
-
-        /// <summary>
         /// Code for the Refresh Command
         /// </summary>
         /// <param name="p"></param>
-        private void RefreshList(object p)
+        protected override void RefreshList(object p)
         {
             EventAwardData = new NotifyTaskCompletion<ObservableCollection<EventAwardInformation>>(LoadEventAwardData(svm.EventKey));
         }
