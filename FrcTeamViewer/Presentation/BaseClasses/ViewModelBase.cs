@@ -19,6 +19,23 @@ namespace FrcTeamViewer.Presentation
         /// </summary>
         public Page CurrentPage { get; set; }
 
+        /// <summary>
+        /// Width of the page.
+        /// </summary>
+        //TODO: figure out how to do this through MVVM, rather than code-behind (currently set through the Page.SizeChanged event in code-behind)
+        public double PageWidth
+        {
+            get
+            {
+                return pageWidth;
+            }
+            set
+            {
+                pageWidth = value;
+                OnPropertyChanged("PageWidth");
+            }
+        }
+
         #region public ICommand objects
         /// <summary>
         /// Change Event Command
@@ -84,6 +101,11 @@ namespace FrcTeamViewer.Presentation
         /// Internal copy of the app settings
         /// </summary>
         protected SettingsViewModel svm { get; set; }
+
+        /// <summary>
+        /// Internal Page Width member
+        /// </summary>
+        protected double pageWidth { get; set; }
 
         #region protected ICommand objects
         /// <summary>

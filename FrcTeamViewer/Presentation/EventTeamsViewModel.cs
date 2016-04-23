@@ -30,23 +30,6 @@ namespace FrcTeamViewer.Presentation
         }
 
         /// <summary>
-        /// Width of the page.
-        /// </summary>
-        //TODO: figure out how to do this through MVVM, rather than code-behind (currently set through the Page.SizeChanged event in code-behind)
-        public double PageWidth
-        {
-            get
-            {
-                return pageWidth;
-            }
-            set
-            {
-                pageWidth = value;
-                OnPropertyChanged("PageWidth");
-            }
-        }
-
-        /// <summary>
         /// Constructor - pulls the team to look up from the local settings
         /// </summary>
         public EventTeamsViewModel()
@@ -63,11 +46,6 @@ namespace FrcTeamViewer.Presentation
         /// Internal event team data
         /// </summary>
         private NotifyTaskCompletion<ObservableCollection<TeamInformation>> eventTeamData { get; set; }
-
-        /// <summary>
-        /// Internal Page Width member
-        /// </summary>
-        private double pageWidth { get; set; }
 
         /// <summary>
         /// Code for the Refresh Command

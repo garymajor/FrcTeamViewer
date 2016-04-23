@@ -31,23 +31,6 @@ namespace FrcTeamViewer.Presentation
         }
 
         /// <summary>
-        /// Width of the page.
-        /// </summary>
-        //TODO: figure out how to do this through MVVM, rather than code-behind (currently set through the Page.SizeChanged event in code-behind)
-        public double PageWidth
-        {
-            get
-            {
-                return pageWidth;
-            }
-            set
-            {
-                pageWidth = value;
-                OnPropertyChanged("PageWidth");
-            }
-        }
-
-        /// <summary>
         /// Sort List Command
         /// </summary>
         public ICommand SortListCommand
@@ -81,11 +64,6 @@ namespace FrcTeamViewer.Presentation
         /// Internal Event Match Data member
         /// </summary>
         private NotifyTaskCompletion<ObservableCollection<MatchInformation>> eventMatchData { get; set; }
-
-        /// <summary>
-        /// Internal Page Width member
-        /// </summary>
-        private double pageWidth { get; set; }
 
         /// <summary>
         /// Refresh List Command Execute
